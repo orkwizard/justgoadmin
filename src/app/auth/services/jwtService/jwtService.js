@@ -21,7 +21,7 @@ class JwtService extends FuseUtils.EventEmitter {
           if (err.response.status === 401 && err.config && !err.config.__isRetryRequest) {
             // if you ever get an unauthorized response, logout the user
             this.emit('onAutoLogout', 'Invalid access_token');
-            this.setSession(null);
+            JwtService.setSession(null);
           }
           throw err;
         });
@@ -30,7 +30,7 @@ class JwtService extends FuseUtils.EventEmitter {
   };
 
   handleAuthentication = () => {
-    const access_token = this.getAccessToken();
+    const access_token = JwtService.getAccessToken();
 
     if (!access_token) {
       this.emit('onNoAccessToken');
@@ -38,11 +38,11 @@ class JwtService extends FuseUtils.EventEmitter {
       return;
     }
 
-    if (this.isAuthTokenValid(access_token)) {
-      this.setSession(access_token);
+    if (JwtService.isAuthTokenValid(access_token)) {
+      JwtService.setSession(access_token);
       this.emit('onAutoLogin', true);
     } else {
-      this.setSession(null);
+      JwtService.setSession(null);
       this.emit('onAutoLogout', 'access_token expired');
     }
   };
@@ -51,7 +51,7 @@ class JwtService extends FuseUtils.EventEmitter {
     return new Promise((resolve, reject) => {
       axios.post(jwtServiceConfig.signUp, data).then(response => {
         if (response.data.user) {
-          this.setSession(response.data.access_token);
+          JwtService.setSession(response.data.access_token);
           resolve(response.data.user);
           this.emit('onLogin', response.data.user);
         } else {
@@ -62,6 +62,7 @@ class JwtService extends FuseUtils.EventEmitter {
   };
 
   signInWithEmailAndPassword = (email, password) => {
+    console.log('🚀 ~ jwtService.js', { signIn: jwtServiceConfig.signIn });
     return new Promise((resolve, reject) => {
       axios
         .get(jwtServiceConfig.signIn, {
@@ -71,8 +72,9 @@ class JwtService extends FuseUtils.EventEmitter {
           },
         })
         .then(response => {
+          console.log('🚀 ~ jwtService.js', { response });
           if (response.data.user) {
-            this.setSession(response.data.access_token);
+            JwtService.setSession(response.data.access_token);
             resolve(response.data.user);
             this.emit('onLogin', response.data.user);
           } else {
@@ -87,12 +89,12 @@ class JwtService extends FuseUtils.EventEmitter {
       axios
         .get(jwtServiceConfig.accessToken, {
           data: {
-            access_token: this.getAccessToken(),
+            access_token: JwtService.getAccessToken(),
           },
         })
         .then(response => {
           if (response.data.user) {
-            this.setSession(response.data.access_token);
+            JwtService.setSession(response.data.access_token);
             resolve(response.data.user);
           } else {
             this.logout();
@@ -123,7 +125,7 @@ class JwtService extends FuseUtils.EventEmitter {
   };
 
   logout = () => {
-    this.setSession(null);
+    JwtService.setSession(null);
     this.emit('onLogout', 'Logged out');
   };
 

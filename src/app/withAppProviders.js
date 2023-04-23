@@ -3,6 +3,8 @@
 // import { create } from 'jss';
 // import jssExtend from 'jss-plugin-extend';
 // import rtl from 'jss-rtl';
+import { useMemo } from 'react';
+
 import { StyledEngineProvider } from '@mui/material/styles';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -13,12 +15,10 @@ import store from './store';
 
 const withAppProviders = Component => props => {
   const WrapperComponent = () => {
+    const value = useMemo(() => ({ routes }), []);
+
     return (
-      <AppContext.Provider
-        value={{
-          routes,
-        }}
-      >
+      <AppContext.Provider value={value}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <Provider store={store}>
             <StyledEngineProvider injectFirst>
