@@ -29,7 +29,7 @@ const StyledListItem = styled(ListItem)(({ theme }) => ({
   },
 }));
 
-function FuseNavHorizontalLink(props) {
+const FuseNavHorizontalLink = props => {
   const { item } = props;
 
   return useMemo(
@@ -64,7 +64,7 @@ function FuseNavHorizontalLink(props) {
     ),
     [item.badge, item.icon, item.iconClass, item.target, item.title, item.url]
   );
-}
+};
 
 FuseNavHorizontalLink.propTypes = {
   item: PropTypes.shape({

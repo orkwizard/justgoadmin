@@ -62,7 +62,7 @@ function renderInputComponent(inputProps) {
           <TextField
             fullWidth
             InputProps={{
-              inputRef: (node) => {
+              inputRef: node => {
                 ref(node);
                 inputRef(node);
               },
@@ -87,7 +87,7 @@ function renderInputComponent(inputProps) {
           fullWidth
           InputProps={{
             disableUnderline: true,
-            inputRef: (node) => {
+            inputRef: node => {
               ref(node);
               inputRef(node);
             },
@@ -142,7 +142,7 @@ function getSuggestions(value, data) {
 
   return inputLength === 0
     ? []
-    : data.filter((suggestion) => {
+    : data.filter(suggestion => {
         const keep = count < 10 && match(suggestion.title, inputValue).length > 0;
 
         if (keep) {
@@ -219,7 +219,7 @@ function reducer(state, action) {
   }
 }
 
-function FuseSearch(props) {
+const FuseSearch = props => {
   const { navigation } = props;
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -323,7 +323,7 @@ function FuseSearch(props) {
               suggestionsList: 'FuseSearch-suggestionsList',
               suggestion: 'FuseSearch-suggestion',
             }}
-            renderSuggestionsContainer={(options) => (
+            renderSuggestionsContainer={options => (
               <Popper
                 anchorEl={popperNode.current}
                 open={Boolean(options.children) || state.noSuggestions}
@@ -383,7 +383,7 @@ function FuseSearch(props) {
                       suggestionsList: 'FuseSearch-suggestionsList',
                       suggestion: 'FuseSearch-suggestion',
                     }}
-                    renderSuggestionsContainer={(options) => (
+                    renderSuggestionsContainer={options => (
                       <Popper
                         anchorEl={popperNode.current}
                         open={Boolean(options.children) || state.noSuggestions}
@@ -422,7 +422,7 @@ function FuseSearch(props) {
       return null;
     }
   }
-}
+};
 
 FuseSearch.propTypes = {};
 FuseSearch.defaultProps = {

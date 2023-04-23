@@ -15,7 +15,7 @@ import { alpha } from '@mui/material/styles';
 
 const inputGlobalStyles = (
   <GlobalStyles
-    styles={(theme) => ({
+    styles={theme => ({
       html: {
         backgroundColor: `${theme.palette.background.default}!important`,
         color: `${theme.palette.text.primary}!important`,
@@ -80,7 +80,7 @@ const inputGlobalStyles = (
   />
 );
 
-function FuseLayout(props) {
+const FuseLayout = props => {
   const { layouts } = props;
   const dispatch = useDispatch();
   const settings = useSelector(selectFuseCurrentSettings);
@@ -143,6 +143,6 @@ function FuseLayout(props) {
       <Layout {...props} />
     </>
   ) : null;
-}
+};
 
 export default memo(FuseLayout);

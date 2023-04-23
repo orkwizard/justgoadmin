@@ -76,7 +76,7 @@ const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction={theme.direction === 'ltr' ? 'left' : 'right'} ref={ref} {...props} />;
 });
 
-function SettingsPanel() {
+const SettingsPanel = () => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
@@ -93,7 +93,7 @@ function SettingsPanel() {
   const settingsHandlers = useSwipeable(handlerOptions);
   const shemesHandlers = useSwipeable(handlerOptions);
 
-  const handleOpen = (panelId) => {
+  const handleOpen = panelId => {
     setOpen(panelId);
   };
 
@@ -189,7 +189,7 @@ function SettingsPanel() {
 
           <FuseThemeSchemes
             themes={themesConfig}
-            onSelect={(_theme) => {
+            onSelect={_theme => {
               dispatch(changeFuseTheme(_theme));
             }}
           />
@@ -197,6 +197,6 @@ function SettingsPanel() {
       </StyledDialog>
     </>
   );
-}
+};
 
 export default memo(SettingsPanel);

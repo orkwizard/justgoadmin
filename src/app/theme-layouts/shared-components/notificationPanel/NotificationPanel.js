@@ -34,7 +34,7 @@ const StyledSwipeableDrawer = styled(SwipeableDrawer)(({ theme }) => ({
   },
 }));
 
-function NotificationPanel(props) {
+const NotificationPanel = props => {
   const location = useLocation();
   const dispatch = useDispatch();
   const state = useSelector(selectNotificationPanelState);
@@ -90,8 +90,8 @@ function NotificationPanel(props) {
     <StyledSwipeableDrawer
       open={state}
       anchor="right"
-      onOpen={(ev) => {}}
-      onClose={(ev) => dispatch(toggleNotificationPanel())}
+      onOpen={ev => {}}
+      onClose={ev => dispatch(toggleNotificationPanel())}
       disableSwipeToOpen
     >
       <IconButton className="m-4 absolute top-0 right-0 z-999" onClick={handleClose} size="large">
@@ -110,7 +110,7 @@ function NotificationPanel(props) {
                 dismiss all
               </Typography>
             </div>
-            {notifications.map((item) => (
+            {notifications.map(item => (
               <NotificationCard
                 key={item.id}
                 className="mb-16"
@@ -134,6 +134,6 @@ function NotificationPanel(props) {
       </div>
     </StyledSwipeableDrawer>
   );
-}
+};
 
 export default withReducer('notificationPanel', reducer)(memo(NotificationPanel));

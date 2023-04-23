@@ -15,29 +15,26 @@ export const dismissAll = createAsyncThunk('notificationPanel/dismissAll', async
   return true;
 });
 
-export const dismissItem = createAsyncThunk('notificationPanel/dismissItem', async (id) => {
+export const dismissItem = createAsyncThunk('notificationPanel/dismissItem', async id => {
   const response = await axios.delete(`/api/notifications/${id}`);
   await response.data;
 
   return id;
 });
 
-export const addNotification = createAsyncThunk(
-  'notificationPanel/addNotification',
-  async (item) => {
-    const response = await axios.post(`/api/notifications`, { ...item });
-    const data = await response.data;
+export const addNotification = createAsyncThunk('notificationPanel/addNotification', async item => {
+  const response = await axios.post(`/api/notifications`, { ...item });
+  const data = await response.data;
 
-    return data;
-  }
-);
+  return data;
+});
 
 const notificationsAdapter = createEntityAdapter({});
 
 const initialState = notificationsAdapter.upsertMany(notificationsAdapter.getInitialState(), []);
 
 export const { selectAll: selectNotifications, selectById: selectNotificationsById } =
-  notificationsAdapter.getSelectors((state) => state.notificationPanel.data);
+  notificationsAdapter.getSelectors(state => state.notificationPanel.data);
 
 const dataSlice = createSlice({
   name: 'notificationPanel/data',

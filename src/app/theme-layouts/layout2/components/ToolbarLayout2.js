@@ -17,7 +17,7 @@ import UserMenu from '../../shared-components/UserMenu';
 import QuickPanelToggleButton from '../../shared-components/quickPanel/QuickPanelToggleButton';
 import ChatPanelToggleButton from '../../shared-components/chatPanel/ChatPanelToggleButton';
 
-function ToolbarLayout2(props) {
+const ToolbarLayout2 = props => {
   const config = useSelector(selectFuseCurrentLayoutConfig);
   const toolbarTheme = useSelector(selectToolbarTheme);
 
@@ -65,6 +65,6 @@ function ToolbarLayout2(props) {
       </AppBar>
     </ThemeProvider>
   );
-}
+};
 
 export default memo(ToolbarLayout2);

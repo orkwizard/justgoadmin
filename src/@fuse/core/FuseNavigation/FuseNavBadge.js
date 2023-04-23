@@ -16,7 +16,7 @@ const Root = styled('div')(({ theme }) => ({
   color: theme.palette.secondary.contrastText,
 }));
 
-function FuseNavBadge(props) {
+const FuseNavBadge = props => {
   const { className, badge } = props;
 
   return (
@@ -30,7 +30,7 @@ function FuseNavBadge(props) {
       {badge.title}
     </Root>
   );
-}
+};
 
 FuseNavBadge.propTypes = {
   badge: PropTypes.shape({

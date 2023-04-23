@@ -31,7 +31,7 @@ const StyledList = styled(List)(({ theme }) => ({
   },
 }));
 
-function FuseNavHorizontalLayout1(props) {
+const FuseNavHorizontalLayout1 = props => {
   const { navigation, layout, active, dense, className } = props;
 
   return (
@@ -43,7 +43,7 @@ function FuseNavHorizontalLayout1(props) {
         className
       )}
     >
-      {navigation.map((_item) => (
+      {navigation.map(_item => (
         <FuseNavItem
           key={_item.id}
           type={`horizontal-${_item.type}`}
@@ -54,6 +54,6 @@ function FuseNavHorizontalLayout1(props) {
       ))}
     </StyledList>
   );
-}
+};
 
 export default FuseNavHorizontalLayout1;

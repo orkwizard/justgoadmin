@@ -11,12 +11,12 @@ import { Link, NavLink } from 'react-router-dom';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import { selectUser } from 'app/store/userSlice';
 
-function UserMenu(props) {
+const UserMenu = props => {
   const user = useSelector(selectUser);
 
   const [userMenu, setUserMenu] = useState(null);
 
-  const userMenuClick = (event) => {
+  const userMenuClick = event => {
     setUserMenu(event.currentTarget);
   };
 
@@ -110,6 +110,6 @@ function UserMenu(props) {
       </Popover>
     </>
   );
-}
+};
 
 export default UserMenu;

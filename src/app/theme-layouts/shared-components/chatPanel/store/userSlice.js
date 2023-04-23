@@ -9,7 +9,7 @@ export const getUserData = createAsyncThunk('chatPanel/user/getUserData', async 
   return data;
 });
 
-export const updateUserData = createAsyncThunk('chatPanel/user/updateUserData', async (newData) => {
+export const updateUserData = createAsyncThunk('chatPanel/user/updateUserData', async newData => {
   const response = await axios.post('/api/chat/user', newData);
 
   const data = await response.data;

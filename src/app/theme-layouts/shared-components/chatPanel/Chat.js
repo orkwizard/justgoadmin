@@ -86,7 +86,7 @@ const StyledMessageRow = styled('div')(({ theme }) => ({
   },
 }));
 
-function Chat(props) {
+const Chat = props => {
   const dispatch = useDispatch();
   const selectedContactId = useSelector(selectSelectedContactId);
   const chat = useSelector(selectChat);
@@ -109,14 +109,14 @@ function Chat(props) {
     });
   }
 
-  const onInputChange = (ev) => {
+  const onInputChange = ev => {
     setMessageText(ev.target.value);
   };
 
   return (
     <Paper
       className={clsx('flex flex-col relative pb-64 shadow', props.className)}
-      sx={{ background: (theme) => theme.palette.background.default }}
+      sx={{ background: theme => theme.palette.background.default }}
     >
       <div ref={chatScroll} className="flex flex-1 flex-col overflow-y-auto overscroll-contain">
         <div className="flex flex-col pt-16">
@@ -175,7 +175,7 @@ function Chat(props) {
       </div>
 
       {useMemo(() => {
-        const onMessageSubmit = (ev) => {
+        const onMessageSubmit = ev => {
           ev.preventDefault();
           if (messageText === '') {
             return;
@@ -224,6 +224,6 @@ function Chat(props) {
       }, [chat, dispatch, messageText, selectedContactId])}
     </Paper>
   );
-}
+};
 
 export default Chat;

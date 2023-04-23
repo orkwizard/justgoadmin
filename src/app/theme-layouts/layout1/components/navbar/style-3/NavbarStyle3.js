@@ -88,7 +88,7 @@ const StyledNavBarMobile = styled(SwipeableDrawer)(({ theme }) => ({
   },
 }));
 
-function NavbarStyle3(props) {
+const NavbarStyle3 = props => {
   const dispatch = useDispatch();
   const config = useSelector(selectFuseCurrentLayoutConfig);
   const navbar = useSelector(selectFuseNavbar);
@@ -97,7 +97,7 @@ function NavbarStyle3(props) {
   return (
     <>
       <GlobalStyles
-        styles={(theme) => ({
+        styles={theme => ({
           '& #fuse-navbar-side-panel': {
             width: props.dense ? navbarWidthDense : navbarWidth,
             minWidth: props.dense ? navbarWidthDense : navbarWidth,
@@ -144,6 +144,6 @@ function NavbarStyle3(props) {
       </Hidden>
     </>
   );
-}
+};
 
 export default NavbarStyle3;

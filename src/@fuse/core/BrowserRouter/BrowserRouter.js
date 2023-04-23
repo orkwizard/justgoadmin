@@ -2,7 +2,7 @@ import { useLayoutEffect, useState } from 'react';
 import history from '@history';
 import { Router } from 'react-router-dom';
 
-function BrowserRouter({ basename, children, window }) {
+const BrowserRouter = ({ basename, children, window }) => {
   const [state, setState] = useState({
     action: history.action,
     location: history.location,
@@ -20,6 +20,6 @@ function BrowserRouter({ basename, children, window }) {
       {children}
     </Router>
   );
-}
+};
 
 export default BrowserRouter;

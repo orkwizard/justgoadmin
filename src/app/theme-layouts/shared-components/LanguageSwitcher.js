@@ -9,13 +9,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { changeLanguage, selectCurrentLanguage, selectLanguages } from 'app/store/i18nSlice';
 
-function LanguageSwitcher(props) {
+const LanguageSwitcher = props => {
   const currentLanguage = useSelector(selectCurrentLanguage);
   const languages = useSelector(selectLanguages);
   const [menu, setMenu] = useState(null);
   const dispatch = useDispatch();
 
-  const langMenuClick = (event) => {
+  const langMenuClick = event => {
     setMenu(event.currentTarget);
   };
 
@@ -59,7 +59,7 @@ function LanguageSwitcher(props) {
           paper: 'py-8',
         }}
       >
-        {languages.map((lng) => (
+        {languages.map(lng => (
           <MenuItem key={lng.id} onClick={() => handleLanguageChange(lng)}>
             <ListItemIcon className="min-w-40">
               <img
@@ -83,6 +83,6 @@ function LanguageSwitcher(props) {
       </Popover>
     </>
   );
-}
+};
 
 export default LanguageSwitcher;

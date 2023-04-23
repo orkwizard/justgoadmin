@@ -2,7 +2,7 @@ import Button from '@mui/material/Button';
 import clsx from 'clsx';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 
-function PurchaseButton({ className }) {
+const PurchaseButton = ({ className }) => {
   return (
     <Button
       component="a"
@@ -18,6 +18,6 @@ function PurchaseButton({ className }) {
       Purchase FUSE React
     </Button>
   );
-}
+};
 
 export default PurchaseButton;

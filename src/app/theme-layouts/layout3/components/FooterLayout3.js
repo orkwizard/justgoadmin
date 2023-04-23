@@ -6,7 +6,7 @@ import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { selectFooterTheme } from 'app/store/fuse/settingsSlice';
 
-function FooterLayout3(props) {
+const FooterLayout3 = props => {
   const footerTheme = useSelector(selectFooterTheme);
 
   return (
@@ -23,6 +23,6 @@ function FooterLayout3(props) {
       </AppBar>
     </ThemeProvider>
   );
-}
+};
 
 export default memo(FooterLayout3);

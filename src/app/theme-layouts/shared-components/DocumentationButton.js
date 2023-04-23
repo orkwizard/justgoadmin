@@ -2,7 +2,7 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 
-function DocumentationButton({ className }) {
+const DocumentationButton = ({ className }) => {
   return (
     <Button
       component={Link}
@@ -16,6 +16,6 @@ function DocumentationButton({ className }) {
       Documentation
     </Button>
   );
-}
+};
 
 export default DocumentationButton;

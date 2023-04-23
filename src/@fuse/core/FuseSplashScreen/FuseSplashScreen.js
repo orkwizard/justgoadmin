@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import Box from '@mui/material/Box';
 
-function FuseSplashScreen() {
+const FuseSplashScreen = () => {
   return (
     <div id="fuse-splash-screen">
       <div className="logo">
@@ -21,6 +21,6 @@ function FuseSplashScreen() {
       </Box>
     </div>
   );
-}
+};
 
 export default memo(FuseSplashScreen);

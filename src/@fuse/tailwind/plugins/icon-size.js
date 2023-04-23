@@ -24,7 +24,7 @@ const iconSize = plugin(
   },
   {
     theme: {
-      iconSize: (theme) => ({
+      iconSize: theme => ({
         ...theme('spacing'),
       }),
     },

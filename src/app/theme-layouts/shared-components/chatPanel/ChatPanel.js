@@ -100,7 +100,7 @@ const Root = styled('div')(({ theme, opened }) => ({
   },
 }));
 
-function ChatPanel(props) {
+const ChatPanel = props => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
   const selectedContactId = useSelector(selectSelectedContactId);
@@ -117,10 +117,10 @@ function ChatPanel(props) {
     },
   });
 
-  const selectedContact = contacts.find((_contact) => _contact.id === selectedContactId);
+  const selectedContact = contacts.find(_contact => _contact.id === selectedContactId);
 
   const handleDocumentKeyDown = useCallback(
-    (event) => {
+    event => {
       if (keycode(event) === 'esc') {
         dispatch(closeChatPanel());
       }
@@ -176,7 +176,7 @@ function ChatPanel(props) {
                 <IconButton
                   className=""
                   color="inherit"
-                  onClick={(ev) => dispatch(openChatPanel())}
+                  onClick={ev => dispatch(openChatPanel())}
                   size="large"
                 >
                   <FuseSvgIcon size={24}>heroicons-outline:chat-alt-2</FuseSvgIcon>
@@ -197,7 +197,7 @@ function ChatPanel(props) {
               </div>
             )}
             <div className="flex px-4">
-              <IconButton onClick={(ev) => dispatch(closeChatPanel())} color="inherit" size="large">
+              <IconButton onClick={ev => dispatch(closeChatPanel())} color="inherit" size="large">
                 <FuseSvgIcon>heroicons-outline:x</FuseSvgIcon>
               </IconButton>
             </div>
@@ -222,6 +222,6 @@ function ChatPanel(props) {
       </div>
     </Root>
   );
-}
+};
 
 export default withReducer('chatPanel', reducer)(memo(ChatPanel));

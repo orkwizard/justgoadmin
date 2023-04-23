@@ -56,7 +56,7 @@ const Root = styled('div')(({ theme }) => ({
   },
 }));
 
-function FuseSettings(props) {
+const FuseSettings = props => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const themes = useSelector(selectFuseThemesSettings);
@@ -72,7 +72,7 @@ function FuseSettings(props) {
   const formChanged = !_.isEqual(form, prevForm);
   const settingsChanged = !_.isEqual(settings, prevSettings);
 
-  const handleUpdate = useDebounce((newSettings) => {
+  const handleUpdate = useDebounce(newSettings => {
     dispatch(setDefaultSettings(newSettings));
   }, 300);
 
@@ -218,7 +218,7 @@ function FuseSettings(props) {
                       className="FuseSettings-group"
                       row={formControl.options.length < 4}
                     >
-                      {formControl.options.map((opt) => (
+                      {formControl.options.map(opt => (
                         <FormControlLabel
                           key={opt.value}
                           value={opt.value}
@@ -245,7 +245,7 @@ function FuseSettings(props) {
                     </FormLabel>
                     <Switch
                       checked={value}
-                      onChange={(ev) => onChange(ev.target.checked)}
+                      onChange={ev => onChange(ev.target.checked)}
                       aria-label={formControl.title}
                     />
                   </FormControl>
@@ -435,7 +435,7 @@ function FuseSettings(props) {
             </FormLabel>
             <Switch
               checked={value}
-              onChange={(ev) => onChange(ev.target.checked)}
+              onChange={ev => onChange(ev.target.checked)}
               aria-label="Custom Scrollbars"
             />
           </FormControl>
@@ -459,6 +459,6 @@ function FuseSettings(props) {
       />
     </Root>
   );
-}
+};
 
 export default memo(FuseSettings);

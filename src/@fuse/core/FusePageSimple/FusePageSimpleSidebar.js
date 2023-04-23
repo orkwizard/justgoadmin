@@ -14,7 +14,7 @@ const FusePageSimpleSidebar = forwardRef((props, ref) => {
     toggleSidebar: handleToggleDrawer,
   }));
 
-  const handleToggleDrawer = useCallback((val) => {
+  const handleToggleDrawer = useCallback(val => {
     setIsOpen(val);
   }, []);
 
@@ -29,7 +29,7 @@ const FusePageSimpleSidebar = forwardRef((props, ref) => {
           variant="temporary"
           anchor={position}
           open={isOpen}
-          onOpen={(ev) => {}}
+          onOpen={ev => {}}
           onClose={() => props?.onClose()}
           disableSwipeToOpen
           classes={{

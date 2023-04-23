@@ -5,7 +5,7 @@ import './prism-languages';
 import { styled } from '@mui/material/styles';
 import clsx from 'clsx';
 
-function FuseHighlight(props) {
+const FuseHighlight = props => {
   const { async, children, className, component: Wrapper } = props;
 
   const domNode = useRef(null);
@@ -62,15 +62,13 @@ function FuseHighlight(props) {
     };
 
     return (
-      <>
-        <Wrapper ref={domNode} className={clsx('border', className)}>
-          {/* {trimCode()} */}
-          {trimCode()}
-        </Wrapper>
-      </>
+      <Wrapper ref={domNode} className={clsx('border', className)}>
+        {/* {trimCode()} */}
+        {trimCode()}
+      </Wrapper>
     );
   }, [children, className]);
-}
+};
 
 FuseHighlight.propTypes = {
   component: PropTypes.node,

@@ -3,7 +3,7 @@ import { memo, useEffect, useLayoutEffect } from 'react';
 
 const useEnhancedEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
-function FuseTheme(props) {
+const FuseTheme = props => {
   const { direction, theme } = props;
   const { mode } = theme.palette;
 
@@ -18,6 +18,6 @@ function FuseTheme(props) {
 
   // console.warn('FuseTheme:: rendered',mainTheme);
   return <ThemeProvider theme={theme}>{props.children}</ThemeProvider>;
-}
+};
 
 export default memo(FuseTheme);

@@ -18,7 +18,7 @@ import { registerComponent } from './FuseNavItem';
 
 const inputGlobalStyles = (
   <GlobalStyles
-    styles={(theme) => ({
+    styles={theme => ({
       '.popper-navigation-list': {
         '& .fuse-list-item': {
           padding: '8px 12px 8px 12px',
@@ -56,7 +56,7 @@ registerComponent('horizontal-link', FuseNavHorizontalLink);
 registerComponent('vertical-divider', () => <Divider className="my-16" />);
 registerComponent('horizontal-divider', () => <Divider className="my-16" />);
 
-function FuseNavigation(props) {
+const FuseNavigation = props => {
   const options = _.pick(props, [
     'navigation',
     'layout',
@@ -78,7 +78,7 @@ function FuseNavigation(props) {
     );
   }
   return null;
-}
+};
 
 FuseNavigation.propTypes = {
   navigation: PropTypes.array.isRequired,

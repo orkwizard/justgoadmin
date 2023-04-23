@@ -24,7 +24,7 @@ const StyledSwipeableDrawer = styled(SwipeableDrawer)(({ theme }) => ({
   },
 }));
 
-function NavbarWrapperLayout3(props) {
+const NavbarWrapperLayout3 = props => {
   const dispatch = useDispatch();
   const config = useSelector(selectFuseCurrentLayoutConfig);
   const navbarTheme = useSelector(selectNavbarTheme);
@@ -60,6 +60,6 @@ function NavbarWrapperLayout3(props) {
       )}
     </>
   );
-}
+};
 
 export default memo(NavbarWrapperLayout3);

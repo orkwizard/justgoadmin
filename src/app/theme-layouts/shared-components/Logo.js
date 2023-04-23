@@ -15,7 +15,7 @@ const Root = styled('div')(({ theme }) => ({
   },
 }));
 
-function Logo() {
+const Logo = () => {
   return (
     <Root className="flex items-center">
       <img className="logo-icon w-32 h-32" src="assets/images/logo/logo.svg" alt="logo" />
@@ -34,6 +34,6 @@ function Logo() {
       </div>
     </Root>
   );
-}
+};
 
 export default Logo;

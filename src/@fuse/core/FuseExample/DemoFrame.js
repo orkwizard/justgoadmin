@@ -8,7 +8,7 @@ import { StyleSheetManager } from 'styled-components';
 import { styled, useTheme } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
 
-function FramedDemo(props) {
+const FramedDemo = props => {
   const { children, document } = props;
 
   const theme = useTheme();
@@ -48,7 +48,7 @@ function FramedDemo(props) {
       </CacheProvider>
     </StyleSheetManager>
   );
-}
+};
 
 FramedDemo.propTypes = {
   children: PropTypes.node,
@@ -63,7 +63,7 @@ const Frame = styled('iframe')(({ theme }) => ({
   boxShadow: theme.shadows[1],
 }));
 
-function DemoFrame(props) {
+const DemoFrame = props => {
   const { children, name, ...other } = props;
   const title = `${name} demo`;
   /**
@@ -100,7 +100,7 @@ function DemoFrame(props) {
         : null}
     </>
   );
-}
+};
 
 DemoFrame.propTypes = {
   children: PropTypes.node.isRequired,

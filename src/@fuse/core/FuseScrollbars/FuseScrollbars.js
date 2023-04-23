@@ -38,7 +38,7 @@ const FuseScrollbars = forwardRef((props, ref) => {
   const { customScrollbars } = props;
 
   const hookUpEvents = useCallback(() => {
-    Object.keys(handlerNameByEvent).forEach((key) => {
+    Object.keys(handlerNameByEvent).forEach(key => {
       const callback = props[handlerNameByEvent[key]];
       if (callback) {
         const handler = () => callback(ref.current);

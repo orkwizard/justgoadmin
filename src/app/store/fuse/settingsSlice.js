@@ -13,7 +13,7 @@ import themeLayoutConfigs from 'app/theme-layouts/themeLayoutConfigs';
 import { setUser, updateUserSettings } from 'app/store/userSlice';
 import { darkPaletteText, lightPaletteText } from 'app/configs/themesConfig';
 
-export const changeFuseTheme = (theme) => (dispatch, getState) => {
+export const changeFuseTheme = theme => (dispatch, getState) => {
   const { fuse } = getState();
   const { settings } = fuse;
 
@@ -113,11 +113,11 @@ const settingsSlice = createSlice({
   },
 });
 
-const getDirection = (state) => state.fuse.settings.current.direction;
-const getMainTheme = (state) => state.fuse.settings.current.theme.main;
-const getNavbarTheme = (state) => state.fuse.settings.current.theme.navbar;
-const getToolbarTheme = (state) => state.fuse.settings.current.theme.toolbar;
-const getFooterTheme = (state) => state.fuse.settings.current.theme.footer;
+const getDirection = state => state.fuse.settings.current.direction;
+const getMainTheme = state => state.fuse.settings.current.theme.main;
+const getNavbarTheme = state => state.fuse.settings.current.theme.navbar;
+const getToolbarTheme = state => state.fuse.settings.current.theme.toolbar;
+const getFooterTheme = state => state.fuse.settings.current.theme.footer;
 
 function generateMuiTheme(theme, direction) {
   const data = _.merge({}, defaultThemeOptions, theme, mustHaveThemeOptions);
@@ -130,7 +130,7 @@ function generateMuiTheme(theme, direction) {
   return response;
 }
 
-export const selectContrastMainTheme = (bgColor) => {
+export const selectContrastMainTheme = bgColor => {
   function isDark(color) {
     return getContrastRatio(color, '#ffffff') >= 3;
   }

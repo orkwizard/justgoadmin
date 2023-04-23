@@ -60,7 +60,7 @@ function isUrlInChildren(parent, url) {
   return false;
 }
 
-function FuseNavVerticalCollapse(props) {
+const FuseNavVerticalCollapse = props => {
   const [open, setOpen] = useState(() => needsToBeOpened(props.location, props.item));
   const { item, nestedLevel, onItemClick } = props;
   const itempadding = nestedLevel > 0 ? 38 + nestedLevel * 16 : 16;
@@ -114,7 +114,7 @@ function FuseNavVerticalCollapse(props) {
           <IconButton
             disableRipple
             className="w-20 h-20 -mx-12 p-0 focus:bg-transparent hover:bg-transparent"
-            onClick={(ev) => ev.preventDefault()}
+            onClick={ev => ev.preventDefault()}
             size="large"
           >
             <FuseSvgIcon size={16} className="arrow-icon" color="inherit">
@@ -125,7 +125,7 @@ function FuseNavVerticalCollapse(props) {
 
         {item.children && (
           <Collapse in={open} className="collapse-children">
-            {item.children.map((_item) => (
+            {item.children.map(_item => (
               <FuseNavItem
                 key={_item.id}
                 type={`vertical-${_item.type}`}
@@ -151,7 +151,7 @@ function FuseNavVerticalCollapse(props) {
       open,
     ]
   );
-}
+};
 
 FuseNavVerticalCollapse.propTypes = {
   item: PropTypes.shape({

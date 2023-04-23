@@ -12,7 +12,7 @@ import DialogContent from '@mui/material/DialogContent';
 import qs from 'qs';
 import Typography from '@mui/material/Typography';
 
-function FuseSettingsViewerDialog(props) {
+const FuseSettingsViewerDialog = props => {
   const { className } = props;
   const [openDialog, setOpenDialog] = useState(false);
   const settings = useSelector(selectFuseCurrentSettings);
@@ -60,6 +60,6 @@ function FuseSettingsViewerDialog(props) {
       </Dialog>
     </div>
   );
-}
+};
 
 export default FuseSettingsViewerDialog;

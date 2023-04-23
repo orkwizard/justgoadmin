@@ -8,7 +8,7 @@ import NavbarStyle2 from './navbar/style-2/NavbarStyle2';
 import NavbarStyle3 from './navbar/style-3/NavbarStyle3';
 import NavbarToggleFab from '../../shared-components/NavbarToggleFab';
 
-function NavbarWrapperLayout1(props) {
+const NavbarWrapperLayout1 = props => {
   const config = useSelector(selectFuseCurrentLayoutConfig);
   const navbar = useSelector(selectFuseNavbar);
 
@@ -28,6 +28,6 @@ function NavbarWrapperLayout1(props) {
       {config.navbar.display && !config.toolbar.display && !navbar.open && <NavbarToggleFab />}
     </>
   );
-}
+};
 
 export default memo(NavbarWrapperLayout1);

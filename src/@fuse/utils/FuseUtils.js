@@ -50,7 +50,7 @@ class FuseUtils {
 
     searchText = searchText.toLowerCase();
 
-    return mainArr.filter((itemObj) => this.searchInObj(itemObj, searchText));
+    return mainArr.filter(itemObj => this.searchInObj(itemObj, searchText));
   }
 
   static searchInObj(itemObj, searchText) {
@@ -84,7 +84,7 @@ class FuseUtils {
   }
 
   static searchInArray(arr, searchText) {
-    arr.forEach((value) => {
+    arr.forEach(value => {
       if (typeof value === 'string') {
         if (this.searchInString(value, searchText)) {
           return true;
@@ -137,7 +137,7 @@ class FuseUtils {
   static setRoutes(config, defaultAuth) {
     let routes = [...config.routes];
 
-    routes = routes.map((route) => {
+    routes = routes.map(route => {
       let auth = config.auth || config.auth === null ? config.auth : defaultAuth || null;
       auth = route.auth || route.auth === null ? route.auth : auth;
       const settings = _.merge({}, config.settings, route.settings);
@@ -154,7 +154,7 @@ class FuseUtils {
 
   static generateRoutesFromConfigs(configs, defaultAuth) {
     let allRoutes = [];
-    configs.forEach((config) => {
+    configs.forEach(config => {
       allRoutes = [...allRoutes, ...this.setRoutes(config, defaultAuth)];
     });
     return allRoutes;
@@ -246,7 +246,7 @@ class FuseUtils {
   static EventEmitter = EventEmitter;
 
   static updateNavItem(nav, id, item) {
-    return nav.map((_item) => {
+    return nav.map(_item => {
       if (_item.id === id) {
         return _.merge({}, _item, item);
       }
@@ -263,7 +263,7 @@ class FuseUtils {
 
   static removeNavItem(nav, id) {
     return nav
-      .map((_item) => {
+      .map(_item => {
         if (_item.id === id) {
           return null;
         }
@@ -276,7 +276,7 @@ class FuseUtils {
 
         return _.merge({}, _item);
       })
-      .filter((s) => s);
+      .filter(s => s);
   }
 
   static prependNavItem(nav, item, parentId) {
@@ -284,7 +284,7 @@ class FuseUtils {
       return [item, ...nav];
     }
 
-    return nav.map((_item) => {
+    return nav.map(_item => {
       if (_item.id === parentId && _item.children) {
         return {
           ..._item,
@@ -307,7 +307,7 @@ class FuseUtils {
       return [...nav, item];
     }
 
-    return nav.map((_item) => {
+    return nav.map(_item => {
       if (_item.id === parentId && _item.children) {
         return {
           ..._item,
@@ -350,7 +350,7 @@ class FuseUtils {
             Check if user role is array,
             */
     if (userRole && Array.isArray(userRole)) {
-      return authArr.some((r) => userRole.indexOf(r) >= 0);
+      return authArr.some(r => userRole.indexOf(r) >= 0);
     }
 
     /*

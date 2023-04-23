@@ -4,7 +4,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 
-function FuseCountdown(props) {
+const FuseCountdown = props => {
   const { onComplete } = props;
   const [endDate] = useState(
     moment.isMoment(props.endDate) ? props.endDate : moment(props.endDate)
@@ -83,7 +83,7 @@ function FuseCountdown(props) {
       </div>
     </div>
   );
-}
+};
 
 FuseCountdown.propTypes = {
   endDate: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,

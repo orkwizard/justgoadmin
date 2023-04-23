@@ -3,7 +3,7 @@ import Paper from '@mui/material/Paper';
 import { useEffect } from 'react';
 import JwtService from '../../auth/services/jwtService';
 
-function SignOutPage() {
+const SignOutPage = () => {
   useEffect(() => {
     setTimeout(() => {
       JwtService.logout();
@@ -23,6 +23,6 @@ function SignOutPage() {
       </Paper>
     </div>
   );
-}
+};
 
 export default SignOutPage;

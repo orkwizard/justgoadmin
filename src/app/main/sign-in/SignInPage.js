@@ -34,7 +34,7 @@ const defaultValues = {
   remember: true,
 };
 
-function SignInPage() {
+const SignInPage = () => {
   const { control, formState, handleSubmit, setError, setValue } = useForm({
     mode: 'onChange',
     defaultValues,
@@ -51,11 +51,11 @@ function SignInPage() {
   function onSubmit({ email, password }) {
     jwtService
       .signInWithEmailAndPassword(email, password)
-      .then((user) => {
+      .then(user => {
         // No need to do anything, user data will be set at app/auth/AuthContext
       })
-      .catch((_errors) => {
-        _errors.forEach((error) => {
+      .catch(_errors => {
+        _errors.forEach(error => {
           setError(error.type, {
             type: 'manual',
             message: error.message,
@@ -262,6 +262,6 @@ function SignInPage() {
       </Box>
     </div>
   );
-}
+};
 
 export default SignInPage;

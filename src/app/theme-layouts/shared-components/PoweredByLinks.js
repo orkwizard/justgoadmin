@@ -2,7 +2,7 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import { motion } from 'framer-motion';
 
-function PoweredByLinks() {
+const PoweredByLinks = () => {
   const container = {
     show: {
       transition: {
@@ -102,6 +102,6 @@ function PoweredByLinks() {
       </Tooltip>
     </motion.div>
   );
-}
+};
 
 export default PoweredByLinks;

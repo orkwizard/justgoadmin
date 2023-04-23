@@ -26,7 +26,7 @@ export const updateNavigationItem = (id, item) => (dispatch, getState) => {
   return dispatch(setNavigation(FuseUtils.updateNavItem(navigation, id, item)));
 };
 
-export const removeNavigationItem = (id) => (dispatch, getState) => {
+export const removeNavigationItem = id => (dispatch, getState) => {
   const navigation = selectNavigationAll(getState());
 
   return dispatch(setNavigation(FuseUtils.removeNavItem(navigation, id)));
@@ -36,7 +36,7 @@ export const {
   selectAll: selectNavigationAll,
   selectIds: selectNavigationIds,
   selectById: selectNavigationItemById,
-} = navigationAdapter.getSelectors((state) => state.fuse.navigation);
+} = navigationAdapter.getSelectors(state => state.fuse.navigation);
 
 const navigationSlice = createSlice({
   name: 'navigation',
@@ -49,14 +49,14 @@ const navigationSlice = createSlice({
 
 export const { setNavigation, resetNavigation } = navigationSlice.actions;
 
-const getUserRole = (state) => state.user.role;
+const getUserRole = state => state.user.role;
 
 export const selectNavigation = createSelector(
   [selectNavigationAll, ({ i18n }) => i18n.language, getUserRole],
   (navigation, language, userRole) => {
     function setTranslationValues(data) {
       // loop through every object in the array
-      return data.map((item) => {
+      return data.map(item => {
         if (item.translate && item.title) {
           item.title = i18next.t(`navigation:${item.translate}`);
         }
@@ -73,14 +73,14 @@ export const selectNavigation = createSelector(
     return setTranslationValues(
       _.merge(
         [],
-        filterRecursively(navigation, (item) => FuseUtils.hasPermission(item.auth, userRole))
+        filterRecursively(navigation, item => FuseUtils.hasPermission(item.auth, userRole))
       )
     );
   }
 );
 
 function filterRecursively(arr, predicate) {
-  return arr.filter(predicate).map((item) => {
+  return arr.filter(predicate).map(item => {
     item = { ...item };
     if (item.children) {
       item.children = filterRecursively(item.children, predicate);
@@ -89,7 +89,7 @@ function filterRecursively(arr, predicate) {
   });
 }
 
-export const selectFlatNavigation = createSelector([selectNavigation], (navigation) =>
+export const selectFlatNavigation = createSelector([selectNavigation], navigation =>
   FuseUtils.getFlatNavigation(navigation)
 );
 

@@ -25,7 +25,7 @@ const StyledSwipeableDrawer = styled(SwipeableDrawer)(({ theme }) => ({
   },
 }));
 
-function QuickPanel(props) {
+const QuickPanel = props => {
   const dispatch = useDispatch();
 
   const data = useSelector(selectQuickPanelData);
@@ -33,7 +33,7 @@ function QuickPanel(props) {
 
   const [checked, setChecked] = useState('notifications');
 
-  const handleToggle = (value) => () => {
+  const handleToggle = value => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
@@ -50,8 +50,8 @@ function QuickPanel(props) {
     <StyledSwipeableDrawer
       open={state}
       anchor="right"
-      onOpen={(ev) => {}}
-      onClose={(ev) => dispatch(toggleQuickPanel())}
+      onOpen={ev => {}}
+      onClose={ev => dispatch(toggleQuickPanel())}
       disableSwipeToOpen
     >
       <FuseScrollbars>
@@ -77,7 +77,7 @@ function QuickPanel(props) {
         <List>
           <ListSubheader component="div">Events</ListSubheader>
           {data &&
-            data.events.map((event) => (
+            data.events.map(event => (
               <ListItem key={event.id}>
                 <ListItemText primary={event.title} secondary={event.detail} />
               </ListItem>
@@ -87,7 +87,7 @@ function QuickPanel(props) {
         <List>
           <ListSubheader component="div">Notes</ListSubheader>
           {data &&
-            data.notes.map((note) => (
+            data.notes.map(note => (
               <ListItem key={note.id}>
                 <ListItemText primary={note.title} secondary={note.detail} />
               </ListItem>
@@ -139,6 +139,6 @@ function QuickPanel(props) {
       </FuseScrollbars>
     </StyledSwipeableDrawer>
   );
-}
+};
 
 export default withReducer('quickPanel', reducer)(memo(QuickPanel));

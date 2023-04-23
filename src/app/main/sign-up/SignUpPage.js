@@ -38,7 +38,7 @@ const defaultValues = {
   acceptTermsConditions: false,
 };
 
-function SignUpPage() {
+const SignUpPage = () => {
   const { control, formState, handleSubmit, reset } = useForm({
     mode: 'onChange',
     defaultValues,
@@ -54,11 +54,11 @@ function SignUpPage() {
         password,
         email,
       })
-      .then((user) => {
+      .then(user => {
         // No need to do anything, registered user data will be set at app/auth/AuthContext
       })
-      .catch((_errors) => {
-        _errors.forEach((error) => {
+      .catch(_errors => {
+        _errors.forEach(error => {
           setError(error.type, {
             type: 'manual',
             message: error.message,
@@ -270,6 +270,6 @@ function SignUpPage() {
       </Box>
     </div>
   );
-}
+};
 
 export default SignUpPage;

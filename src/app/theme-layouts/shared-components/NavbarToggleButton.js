@@ -6,9 +6,9 @@ import useThemeMediaQuery from '@fuse/hooks/useThemeMediaQuery';
 import { navbarToggle, navbarToggleMobile } from 'app/store/fuse/navbarSlice';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 
-function NavbarToggleButton(props) {
+const NavbarToggleButton = props => {
   const dispatch = useDispatch();
-  const isMobile = useThemeMediaQuery((theme) => theme.breakpoints.down('lg'));
+  const isMobile = useThemeMediaQuery(theme => theme.breakpoints.down('lg'));
   const settings = useSelector(selectFuseCurrentSettings);
   const { config } = settings.layout;
 
@@ -17,7 +17,7 @@ function NavbarToggleButton(props) {
       className={props.className}
       color="inherit"
       size="small"
-      onClick={(ev) => {
+      onClick={ev => {
         if (isMobile) {
           dispatch(navbarToggleMobile());
         } else if (config.navbar.style === 'style-2') {
@@ -34,7 +34,7 @@ function NavbarToggleButton(props) {
       {props.children}
     </IconButton>
   );
-}
+};
 
 NavbarToggleButton.defaultProps = {
   children: (

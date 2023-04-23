@@ -17,7 +17,7 @@ import ChatPanelToggleButton from '../../shared-components/chatPanel/ChatPanelTo
 import Logo from '../../shared-components/Logo';
 import NavbarToggleButton from '../../shared-components/NavbarToggleButton';
 
-function ToolbarLayout3(props) {
+const ToolbarLayout3 = props => {
   const config = useSelector(selectFuseCurrentLayoutConfig);
   const toolbarTheme = useSelector(selectToolbarTheme);
 
@@ -73,6 +73,6 @@ function ToolbarLayout3(props) {
       </AppBar>
     </ThemeProvider>
   );
-}
+};
 
 export default memo(ToolbarLayout3);

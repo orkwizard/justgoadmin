@@ -40,7 +40,7 @@ const StyledNavBarMobile = styled(SwipeableDrawer)(({ theme }) => ({
   },
 }));
 
-function NavbarStyle1(props) {
+const NavbarStyle1 = props => {
   const dispatch = useDispatch();
   const config = useSelector(selectFuseCurrentLayoutConfig);
   const navbar = useSelector(selectFuseNavbar);
@@ -77,6 +77,6 @@ function NavbarStyle1(props) {
       </Hidden>
     </>
   );
-}
+};
 
 export default NavbarStyle1;

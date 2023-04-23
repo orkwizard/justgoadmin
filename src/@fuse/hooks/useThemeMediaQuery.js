@@ -18,7 +18,7 @@ function useThemeMediaQuery(themeCallbackFunc) {
       // Update the state with the current value
       setMatches(getMatches(query));
       // Create an event listener
-      const handler = (event) => setMatches(event.matches);
+      const handler = event => setMatches(event.matches);
       // Attach the event listener to know when the matches value changes
       mediaQuery.addEventListener('change', handler);
       // Remove the event listener on cleanup

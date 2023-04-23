@@ -16,7 +16,7 @@ const marks = [
   { value: 1.3, label: '130%' },
 ];
 
-function AdjustFontSize(props) {
+const AdjustFontSize = props => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [fontSize, setFontSize] = useState(1);
 
@@ -25,7 +25,7 @@ function AdjustFontSize(props) {
     html.style.fontSize = `${fontSize * 62.5}%`;
   }
 
-  const handleClick = (event) => {
+  const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -84,6 +84,6 @@ function AdjustFontSize(props) {
       </Menu>
     </div>
   );
-}
+};
 
 export default AdjustFontSize;

@@ -7,11 +7,11 @@ import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import NavLinkAdapter from '@fuse/core/NavLinkAdapter';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
-function NotificationCard(props) {
+const NotificationCard = props => {
   const { item, className } = props;
   const variant = item?.variant || '';
 
-  const handleClose = (ev) => {
+  const handleClose = ev => {
     ev.preventDefault();
     ev.stopPropagation();
 
@@ -82,6 +82,6 @@ function NotificationCard(props) {
       {item.children}
     </Card>
   );
-}
+};
 
 export default NotificationCard;

@@ -37,7 +37,7 @@ const Root = styled(ListItem)(({ theme, ...props }) => ({
   textDecoration: 'none!important',
 }));
 
-function FuseNavVerticalLink(props) {
+const FuseNavVerticalLink = props => {
   const dispatch = useDispatch();
   const { item, nestedLevel, onItemClick } = props;
 
@@ -81,7 +81,7 @@ function FuseNavVerticalLink(props) {
     ),
     [item, itempadding, onItemClick]
   );
-}
+};
 
 FuseNavVerticalLink.propTypes = {
   item: PropTypes.shape({

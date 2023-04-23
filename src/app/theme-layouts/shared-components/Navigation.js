@@ -6,9 +6,9 @@ import { selectNavigation } from 'app/store/fuse/navigationSlice';
 import useThemeMediaQuery from '@fuse/hooks/useThemeMediaQuery';
 import { navbarCloseMobile } from 'app/store/fuse/navbarSlice';
 
-function Navigation(props) {
+const Navigation = props => {
   const navigation = useSelector(selectNavigation);
-  const isMobile = useThemeMediaQuery((theme) => theme.breakpoints.down('lg'));
+  const isMobile = useThemeMediaQuery(theme => theme.breakpoints.down('lg'));
 
   const dispatch = useDispatch();
 
@@ -30,7 +30,7 @@ function Navigation(props) {
       />
     );
   }, [dispatch, isMobile, navigation, props.active, props.className, props.dense, props.layout]);
-}
+};
 
 Navigation.defaultProps = {
   layout: 'vertical',

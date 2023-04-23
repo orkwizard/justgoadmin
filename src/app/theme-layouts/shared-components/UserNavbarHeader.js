@@ -25,7 +25,7 @@ const Root = styled('div')(({ theme }) => ({
   },
 }));
 
-function UserNavbarHeader(props) {
+const UserNavbarHeader = props => {
   const user = useSelector(selectUser);
 
   return (
@@ -51,6 +51,6 @@ function UserNavbarHeader(props) {
       </Typography>
     </Root>
   );
-}
+};
 
 export default UserNavbarHeader;

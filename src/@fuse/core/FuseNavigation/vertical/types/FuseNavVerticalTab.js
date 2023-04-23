@@ -64,7 +64,7 @@ const Root = styled(Box)(({ theme }) => ({
   },
 }));
 
-function FuseNavVerticalTab(props) {
+const FuseNavVerticalTab = props => {
   const dispatch = useDispatch();
   const location = useLocation();
 
@@ -144,7 +144,7 @@ function FuseNavVerticalTab(props) {
         </ListItem>
         {!firstLevel &&
           item.children &&
-          item.children.map((_item) => (
+          item.children.map(_item => (
             <NavVerticalTab
               key={_item.id}
               type={`vertical-${_item.type}`}
@@ -159,7 +159,7 @@ function FuseNavVerticalTab(props) {
     ),
     [firstLevel, item, onItemClick, dense, selectedId]
   );
-}
+};
 
 FuseNavVerticalTab.propTypes = {
   item: PropTypes.shape({

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 
-function Error404Page() {
+const Error404Page = () => {
   return (
     <div className="flex flex-col flex-1 items-center justify-center p-16">
       <div className="w-full max-w-3xl text-center">
@@ -250,6 +250,6 @@ function Error404Page() {
       </div>
     </div>
   );
-}
+};
 
 export default Error404Page;

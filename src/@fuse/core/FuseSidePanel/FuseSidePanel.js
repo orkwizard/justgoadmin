@@ -172,7 +172,7 @@ const Root = styled('div')(({ theme }) => ({
   },
 }));
 
-function FuseSidePanel(props) {
+const FuseSidePanel = props => {
   const [opened, setOpened] = useState(props.opened);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -227,7 +227,7 @@ function FuseSidePanel(props) {
           }}
           anchor={props.position}
           open={mobileOpen}
-          onOpen={(ev) => {}}
+          onOpen={ev => {}}
           onClose={toggleMobileDrawer}
           disableSwipeToOpen
         >
@@ -250,7 +250,7 @@ function FuseSidePanel(props) {
       </Hidden>
     </Root>
   );
-}
+};
 
 FuseSidePanel.propTypes = {};
 FuseSidePanel.defaultProps = {

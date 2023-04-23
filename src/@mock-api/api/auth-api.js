@@ -11,10 +11,10 @@ let usersApi = mockApi.components.examples.auth_users.value;
 
 /* eslint-disable camelcase */
 
-mock.onGet('/api/auth/sign-in').reply(async (config) => {
+mock.onGet('/api/auth/sign-in').reply(async config => {
   const data = JSON.parse(config.data);
   const { email, password } = data;
-  const user = _.cloneDeep(usersApi.find((_user) => _user.data.email === email));
+  const user = _.cloneDeep(usersApi.find(_user => _user.data.email === email));
 
   const error = [];
 
@@ -48,14 +48,14 @@ mock.onGet('/api/auth/sign-in').reply(async (config) => {
   return [200, { error }];
 });
 
-mock.onGet('/api/auth/access-token').reply((config) => {
+mock.onGet('/api/auth/access-token').reply(config => {
   const data = JSON.parse(config.data);
   const { access_token } = data;
 
   if (verifyJWTToken(access_token)) {
     const { id } = jwtDecode(access_token);
 
-    const user = _.cloneDeep(usersApi.find((_user) => _user.uuid === id));
+    const user = _.cloneDeep(usersApi.find(_user => _user.uuid === id));
 
     delete user.password;
 
@@ -72,10 +72,10 @@ mock.onGet('/api/auth/access-token').reply((config) => {
   return [401, { error }];
 });
 
-mock.onPost('/api/auth/sign-up').reply((request) => {
+mock.onPost('/api/auth/sign-up').reply(request => {
   const data = JSON.parse(request.data);
   const { displayName, password, email } = data;
-  const isEmailExists = usersApi.find((_user) => _user.data.email === email);
+  const isEmailExists = usersApi.find(_user => _user.data.email === email);
   const error = [];
 
   if (isEmailExists) {
@@ -118,11 +118,11 @@ mock.onPost('/api/auth/sign-up').reply((request) => {
   return [200, { error }];
 });
 
-mock.onPost('/api/auth/user/update').reply((config) => {
+mock.onPost('/api/auth/user/update').reply(config => {
   const data = JSON.parse(config.data);
   const { user } = data;
 
-  usersApi = usersApi.map((_user) => {
+  usersApi = usersApi.map(_user => {
     if (user.uuid === user.id) {
       return _.merge(_user, user);
     }

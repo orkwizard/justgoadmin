@@ -4,7 +4,7 @@ import { ThemeProvider, useTheme } from '@mui/material/styles';
 import { selectContrastMainTheme } from 'app/store/fuse/settingsSlice';
 import clsx from 'clsx';
 
-function FusePageSimpleSidebarContent(props) {
+const FusePageSimpleSidebarContent = props => {
   const theme = useTheme();
   const contrastTheme = useSelector(selectContrastMainTheme(theme.palette.primary.main));
 
@@ -19,6 +19,6 @@ function FusePageSimpleSidebarContent(props) {
       {props.content && <div className="FusePageSimple-sidebarContent">{props.content}</div>}
     </FuseScrollbars>
   );
-}
+};
 
 export default FusePageSimpleSidebarContent;

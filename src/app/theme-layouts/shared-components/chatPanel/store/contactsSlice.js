@@ -3,7 +3,7 @@ import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/too
 import axios from 'axios';
 import { closeChatPanel } from './stateSlice';
 
-export const getContacts = createAsyncThunk('chatPanel/contacts/getContacts', async (params) => {
+export const getContacts = createAsyncThunk('chatPanel/contacts/getContacts', async params => {
   const response = await axios.get('/api/chat/contacts', { params });
 
   const data = await response.data;
@@ -14,7 +14,7 @@ export const getContacts = createAsyncThunk('chatPanel/contacts/getContacts', as
 const contactsAdapter = createEntityAdapter({});
 
 export const { selectAll: selectContacts, selectById: selectContactById } =
-  contactsAdapter.getSelectors((state) => state.chatPanel.contacts);
+  contactsAdapter.getSelectors(state => state.chatPanel.contacts);
 
 const contactsSlice = createSlice({
   name: 'chatPanel/contacts',

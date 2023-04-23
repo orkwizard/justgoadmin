@@ -14,7 +14,7 @@ const Root = styled(FuseScrollbars)(({ theme }) => ({
   background: theme.palette.background.paper,
 }));
 
-function ContactList(props) {
+const ContactList = props => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
   const selectedContactId = useSelector(selectSelectedContactId);
@@ -34,13 +34,13 @@ function ContactList(props) {
       {useMemo(() => {
         const chatListContacts =
           contacts.length > 0 && chats.length > 0
-            ? chats.map((_chat) => ({
+            ? chats.map(_chat => ({
                 ..._chat,
-                ...contacts.find((_contact) => _contact.id === _chat.contactId),
+                ...contacts.find(_contact => _contact.id === _chat.contactId),
               }))
             : [];
 
-        const handleContactClick = (contactId) => {
+        const handleContactClick = contactId => {
           dispatch(openChatPanel());
           dispatch(getChat(contactId));
           scrollToTop();
@@ -61,30 +61,15 @@ function ContactList(props) {
 
         return (
           contacts.length > 0 && (
-            <>
-              <motion.div
-                variants={container}
-                initial="hidden"
-                animate="show"
-                className="flex flex-col shrink-0"
-              >
-                {chatListContacts &&
-                  chatListContacts.map((contact) => {
-                    return (
-                      <motion.div variants={item} key={contact.id}>
-                        <ContactButton
-                          contact={contact}
-                          selectedContactId={selectedContactId}
-                          onClick={handleContactClick}
-                        />
-                      </motion.div>
-                    );
-                  })}
-                <Divider className="mx-24 my-8" />
-                {contacts.map((contact) => {
-                  const chatContact = chats.find((_chat) => _chat.contactId === contact.id);
-
-                  return !chatContact ? (
+            <motion.div
+              variants={container}
+              initial="hidden"
+              animate="show"
+              className="flex flex-col shrink-0"
+            >
+              {chatListContacts &&
+                chatListContacts.map(contact => {
+                  return (
                     <motion.div variants={item} key={contact.id}>
                       <ContactButton
                         contact={contact}
@@ -92,15 +77,28 @@ function ContactList(props) {
                         onClick={handleContactClick}
                       />
                     </motion.div>
-                  ) : null;
+                  );
                 })}
-              </motion.div>
-            </>
+              <Divider className="mx-24 my-8" />
+              {contacts.map(contact => {
+                const chatContact = chats.find(_chat => _chat.contactId === contact.id);
+
+                return !chatContact ? (
+                  <motion.div variants={item} key={contact.id}>
+                    <ContactButton
+                      contact={contact}
+                      selectedContactId={selectedContactId}
+                      onClick={handleContactClick}
+                    />
+                  </motion.div>
+                ) : null;
+              })}
+            </motion.div>
           )
         );
       }, [chats, contacts, dispatch, selectedContactId])}
     </Root>
   );
-}
+};
 
 export default memo(ContactList);

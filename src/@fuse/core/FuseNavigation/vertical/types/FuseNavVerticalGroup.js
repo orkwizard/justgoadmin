@@ -21,7 +21,7 @@ const Root = styled(ListItem)(({ theme, itempadding, ...props }) => ({
   letterSpacing: '0.025em',
 }));
 
-function FuseNavVerticalGroup(props) {
+const FuseNavVerticalGroup = props => {
   const { item, nestedLevel, onItemClick } = props;
 
   const itempadding = nestedLevel > 0 ? 38 + nestedLevel * 16 : 16;
@@ -70,7 +70,7 @@ function FuseNavVerticalGroup(props) {
         </Root>
         {item.children && (
           <>
-            {item.children.map((_item) => (
+            {item.children.map(_item => (
               <FuseNavItem
                 key={_item.id}
                 type={`vertical-${_item.type}`}
@@ -85,7 +85,7 @@ function FuseNavVerticalGroup(props) {
     ),
     [item, itempadding, nestedLevel, onItemClick]
   );
-}
+};
 
 FuseNavVerticalGroup.propTypes = {
   item: PropTypes.shape({

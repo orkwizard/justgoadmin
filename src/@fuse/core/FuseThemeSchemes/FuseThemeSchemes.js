@@ -3,7 +3,7 @@ import { useTheme } from '@mui/material/styles';
 import { memo } from 'react';
 import clsx from 'clsx';
 
-function SchemePreview({ theme, className, id, onSelect }) {
+const SchemePreview = ({ theme, className, id, onSelect }) => {
   const _theme = useTheme();
   const primaryColor = theme.palette.primary[500]
     ? theme.palette.primary[500]
@@ -71,9 +71,9 @@ function SchemePreview({ theme, className, id, onSelect }) {
       <Typography className="font-semibold w-full text-center mt-12">{id}</Typography>
     </div>
   );
-}
+};
 
-function FuseThemeSchemes(props) {
+const FuseThemeSchemes = props => {
   const { themes } = props;
 
   return (
@@ -89,6 +89,6 @@ function FuseThemeSchemes(props) {
       </div>
     </div>
   );
-}
+};
 
 export default memo(FuseThemeSchemes);

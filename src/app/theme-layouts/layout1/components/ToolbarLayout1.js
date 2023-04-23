@@ -18,7 +18,7 @@ import UserMenu from '../../shared-components/UserMenu';
 import QuickPanelToggleButton from '../../shared-components/quickPanel/QuickPanelToggleButton';
 import ChatPanelToggleButton from '../../shared-components/chatPanel/ChatPanelToggleButton';
 
-function ToolbarLayout1(props) {
+const ToolbarLayout1 = props => {
   const config = useSelector(selectFuseCurrentLayoutConfig);
   const navbar = useSelector(selectFuseNavbar);
   const toolbarTheme = useSelector(selectToolbarTheme);
@@ -30,7 +30,7 @@ function ToolbarLayout1(props) {
         className={clsx('flex relative z-20 shadow-md', props.className)}
         color="default"
         sx={{
-          backgroundColor: (theme) =>
+          backgroundColor: theme =>
             theme.palette.mode === 'light'
               ? toolbarTheme.palette.background.paper
               : toolbarTheme.palette.background.default,
@@ -98,6 +98,6 @@ function ToolbarLayout1(props) {
       </AppBar>
     </ThemeProvider>
   );
-}
+};
 
 export default memo(ToolbarLayout1);

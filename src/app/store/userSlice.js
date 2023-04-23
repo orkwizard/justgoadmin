@@ -65,7 +65,7 @@ export const logoutUser = () => async (dispatch, getState) => {
   return dispatch(userLoggedOut());
 };
 
-export const updateUserData = (user) => async (dispatch, getState) => {
+export const updateUserData = user => async (dispatch, getState) => {
   if (!user.role || user.role.length === 0) {
     // is guest
     return;
@@ -76,7 +76,7 @@ export const updateUserData = (user) => async (dispatch, getState) => {
     .then(() => {
       dispatch(showMessage({ message: 'User data saved with api' }));
     })
-    .catch((error) => {
+    .catch(error => {
       dispatch(showMessage({ message: error.message }));
     });
 };

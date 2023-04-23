@@ -165,10 +165,10 @@ const FusePageCarded = forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     rootRef,
-    toggleLeftSidebar: (val) => {
+    toggleLeftSidebar: val => {
       leftSidebarRef.current.toggleSidebar(val);
     },
-    toggleRightSidebar: (val) => {
+    toggleRightSidebar: val => {
       rightSidebarRef.current.toggleSidebar(val);
     },
   }));
@@ -176,7 +176,7 @@ const FusePageCarded = forwardRef((props, ref) => {
   return (
     <>
       <GlobalStyles
-        styles={(theme) => ({
+        styles={theme => ({
           ...(props.scroll !== 'page' && {
             '#fuse-toolbar': {
               position: 'static',

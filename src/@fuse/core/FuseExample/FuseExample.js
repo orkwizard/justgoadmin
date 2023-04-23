@@ -21,7 +21,7 @@ const defaultProps = {
   currentTabIndex: 0,
 };
 
-function FuseExample(props) {
+const FuseExample = props => {
   const [currentTab, setCurrentTab] = useState(props.currentTabIndex);
   const { component: Component, raw, iframe, className, name } = props;
 
@@ -33,13 +33,13 @@ function FuseExample(props) {
     <Card
       className={clsx(className, 'shadow')}
       sx={{
-        backgroundColor: (theme) =>
+        backgroundColor: theme =>
           darken(theme.palette.background.paper, theme.palette.mode === 'light' ? 0.01 : 0.1),
       }}
     >
       <Box
         sx={{
-          backgroundColor: (theme) =>
+          backgroundColor: theme =>
             darken(theme.palette.background.paper, theme.palette.mode === 'light' ? 0.02 : 0.2),
         }}
       >
@@ -98,7 +98,7 @@ function FuseExample(props) {
       </div>
     </Card>
   );
-}
+};
 
 FuseExample.propTypes = propTypes;
 FuseExample.defaultProps = defaultProps;

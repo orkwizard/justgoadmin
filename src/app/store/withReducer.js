@@ -1,9 +1,11 @@
 import { injectReducer } from 'app/store/index';
 
-const withReducer = (key, reducer) => (WrappedComponent) => {
+const withReducer = (key, reducer) => WrappedComponent => {
   injectReducer(key, reducer);
 
-  return (props) => <WrappedComponent {...props} />;
+  return props => {
+    return <WrappedComponent {...props} />;
+  };
 };
 
 export default withReducer;

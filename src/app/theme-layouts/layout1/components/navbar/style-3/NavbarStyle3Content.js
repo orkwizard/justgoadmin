@@ -54,8 +54,8 @@ function isUrlInChildren(parent, url) {
   return false;
 }
 
-function NavbarStyle3Content(props) {
-  const isMobile = useThemeMediaQuery((theme) => theme.breakpoints.down('lg'));
+const NavbarStyle3Content = props => {
+  const isMobile = useThemeMediaQuery(theme => theme.breakpoints.down('lg'));
   const navigation = useSelector(selectNavigation);
   const [selectedNavigation, setSelectedNavigation] = useState([]);
   const [panelOpen, setPanelOpen] = useState(false);
@@ -65,7 +65,7 @@ function NavbarStyle3Content(props) {
   const location = useLocation();
 
   useEffect(() => {
-    navigation?.forEach((item) => {
+    navigation?.forEach(item => {
       if (needsToBeOpened(location, item)) {
         setSelectedNavigation([item]);
       }
@@ -142,6 +142,6 @@ function NavbarStyle3Content(props) {
       </Root>
     </ClickAwayListener>
   );
-}
+};
 
 export default memo(NavbarStyle3Content);

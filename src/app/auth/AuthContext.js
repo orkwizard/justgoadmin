@@ -8,7 +8,7 @@ import jwtService from './services/jwtService';
 
 const AuthContext = React.createContext();
 
-function AuthProvider({ children }) {
+const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(undefined);
   const [waitAuthCheck, setWaitAuthCheck] = useState(true);
   const dispatch = useDispatch();
@@ -22,15 +22,15 @@ function AuthProvider({ children }) {
        */
       jwtService
         .signInWithToken()
-        .then((user) => {
+        .then(user => {
           success(user, 'Signed in with JWT');
         })
-        .catch((error) => {
+        .catch(error => {
           pass(error.message);
         });
     });
 
-    jwtService.on('onLogin', (user) => {
+    jwtService.on('onLogin', user => {
       success(user, 'Signed in');
     });
 
@@ -40,7 +40,7 @@ function AuthProvider({ children }) {
       dispatch(logoutUser());
     });
 
-    jwtService.on('onAutoLogout', (message) => {
+    jwtService.on('onAutoLogout', message => {
       pass(message);
 
       dispatch(logoutUser());
@@ -60,7 +60,7 @@ function AuthProvider({ children }) {
       Promise.all([
         dispatch(setUser(user)),
         // You can receive data in here before app initialization
-      ]).then((values) => {
+      ]).then(values => {
         setWaitAuthCheck(false);
         setIsAuthenticated(true);
       });
@@ -81,7 +81,7 @@ function AuthProvider({ children }) {
   ) : (
     <AuthContext.Provider value={{ isAuthenticated }}>{children}</AuthContext.Provider>
   );
-}
+};
 
 function useAuth() {
   const context = React.useContext(AuthContext);

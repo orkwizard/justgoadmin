@@ -59,12 +59,12 @@ function isUrlInChildren(parent, url) {
   return false;
 }
 
-function FuseNavHorizontalGroup(props) {
+const FuseNavHorizontalGroup = props => {
   const [opened, setOpened] = useState(false);
   const { item, nestedLevel, dense } = props;
   const theme = useTheme();
 
-  const handleToggle = useDebounce((open) => {
+  const handleToggle = useDebounce(open => {
     setOpened(open);
   }, 150);
 
@@ -155,7 +155,7 @@ function FuseNavHorizontalGroup(props) {
                     >
                       {item.children && (
                         <ul className={clsx('popper-navigation-list', dense && 'dense', 'px-0')}>
-                          {item.children.map((_item) => (
+                          {item.children.map(_item => (
                             <FuseNavItem
                               key={_item.id}
                               type={`horizontal-${_item.type}`}
@@ -177,7 +177,7 @@ function FuseNavHorizontalGroup(props) {
       </Manager>
     );
   }, [dense, handleToggle, item, nestedLevel, opened, props.location.pathname, theme.direction]);
-}
+};
 
 FuseNavHorizontalGroup.propTypes = {
   item: PropTypes.shape({

@@ -3,7 +3,7 @@ import FuseShortcuts from '@fuse/core/FuseShortcuts';
 import { selectFlatNavigation } from 'app/store/fuse/navigationSlice';
 import { selectUserShortcuts, updateUserShortcuts } from 'app/store/userSlice';
 
-function NavigationShortcuts(props) {
+const NavigationShortcuts = props => {
   const { variant, className } = props;
   const dispatch = useDispatch();
   const shortcuts = useSelector(selectUserShortcuts) || [];
@@ -22,6 +22,6 @@ function NavigationShortcuts(props) {
       onChange={handleShortcutsChange}
     />
   );
-}
+};
 
 export default NavigationShortcuts;

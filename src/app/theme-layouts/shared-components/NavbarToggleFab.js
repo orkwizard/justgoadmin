@@ -59,8 +59,8 @@ const Root = styled(Tooltip)(({ theme, position }) => ({
   },
 }));
 
-function NavbarToggleFab(props) {
-  const isMobile = useThemeMediaQuery((theme) => theme.breakpoints.down('lg'));
+const NavbarToggleFab = props => {
+  const isMobile = useThemeMediaQuery(theme => theme.breakpoints.down('lg'));
   const config = useSelector(selectFuseCurrentLayoutConfig);
 
   const dispatch = useDispatch();
@@ -73,7 +73,7 @@ function NavbarToggleFab(props) {
     >
       <Fab
         className={clsx('button', props.className)}
-        onClick={(ev) => dispatch(isMobile ? navbarToggleMobile() : navbarToggle())}
+        onClick={ev => dispatch(isMobile ? navbarToggleMobile() : navbarToggle())}
         disableRipple
       >
         <FuseSvgIcon color="action" className="button-icon">
@@ -82,7 +82,7 @@ function NavbarToggleFab(props) {
       </Fab>
     </Root>
   );
-}
+};
 
 NavbarToggleFab.defaultProps = {};
 

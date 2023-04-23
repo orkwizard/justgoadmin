@@ -1,7 +1,7 @@
 import { Component, forwardRef } from 'react';
 import withRouter from '@fuse/core/withRouter';
 
-const withRouterAndRef = (WrappedComponent) => {
+const withRouterAndRef = WrappedComponent => {
   class InnerComponentWithRef extends Component {
     render() {
       const { forwardRef: _forwardRef, ...rest } = this.props;

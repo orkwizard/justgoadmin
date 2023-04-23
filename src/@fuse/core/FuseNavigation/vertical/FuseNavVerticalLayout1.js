@@ -36,7 +36,7 @@ const StyledList = styled(List)(({ theme }) => ({
   },
 }));
 
-function FuseNavVerticalLayout1(props) {
+const FuseNavVerticalLayout1 = props => {
   const { navigation, layout, active, dense, className, onItemClick } = props;
   const dispatch = useDispatch();
 
@@ -53,7 +53,7 @@ function FuseNavVerticalLayout1(props) {
         className
       )}
     >
-      {navigation.map((_item) => (
+      {navigation.map(_item => (
         <FuseNavItem
           key={_item.id}
           type={`vertical-${_item.type}`}
@@ -64,6 +64,6 @@ function FuseNavVerticalLayout1(props) {
       ))}
     </StyledList>
   );
-}
+};
 
 export default FuseNavVerticalLayout1;

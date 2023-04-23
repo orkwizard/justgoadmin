@@ -33,7 +33,7 @@ const StyledContent = styled(FuseScrollbars)(({ theme }) => ({
   backgroundAttachment: 'local, scroll',
 }));
 
-function NavbarMobileLayout3(props) {
+const NavbarMobileLayout3 = props => {
   return (
     <Root className={clsx('flex flex-col h-full overflow-hidden', props.className)}>
       <div className="flex flex-row items-center shrink-0 h-48 md:h-72 px-20">
@@ -58,6 +58,6 @@ function NavbarMobileLayout3(props) {
       </StyledContent>
     </Root>
   );
-}
+};
 
 export default memo(NavbarMobileLayout3);

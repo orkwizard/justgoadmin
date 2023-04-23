@@ -10,7 +10,7 @@ const Root = styled('div')(({ theme }) => ({
   color: theme.palette.text.primary,
 }));
 
-function NavbarLayout2(props) {
+const NavbarLayout2 = props => {
   return (
     <Root className={clsx('w-full h-64 min-h-64 max-h-64 shadow-md', props.className)}>
       <div className="flex flex-auto justify-between items-center w-full h-full container p-0 lg:px-24 z-20">
@@ -24,6 +24,6 @@ function NavbarLayout2(props) {
       </div>
     </Root>
   );
-}
+};
 
 export default memo(NavbarLayout2);

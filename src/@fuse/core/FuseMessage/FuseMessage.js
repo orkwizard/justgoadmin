@@ -44,7 +44,7 @@ const variantIcon = {
   info: 'info',
 };
 
-function FuseMessage(props) {
+const FuseMessage = props => {
   const dispatch = useDispatch();
   const state = useSelector(selectFuseMessageState);
   const options = useSelector(selectFuseMessageOptions);
@@ -86,6 +86,6 @@ function FuseMessage(props) {
       />
     </StyledSnackbar>
   );
-}
+};
 
 export default memo(FuseMessage);

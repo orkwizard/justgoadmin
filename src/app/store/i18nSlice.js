@@ -2,7 +2,7 @@ import { createSelector, createSlice } from '@reduxjs/toolkit';
 import i18n from 'src/i18n';
 import { setDefaultSettings } from './fuse/settingsSlice';
 
-export const changeLanguage = (languageId) => (dispatch, getState) => {
+export const changeLanguage = languageId => (dispatch, getState) => {
   const { direction } = getState().fuse.settings.defaults;
 
   const newLangDirection = i18n.dir(languageId);
@@ -43,14 +43,14 @@ export const selectCurrentLanguageId = ({ i18n: _i18n }) => _i18n.language;
 
 export const selectLanguages = ({ i18n: _i18n }) => _i18n.languages;
 
-export const selectCurrentLanguageDirection = createSelector([selectCurrentLanguageId], (id) => {
+export const selectCurrentLanguageDirection = createSelector([selectCurrentLanguageId], id => {
   return i18n.dir(id);
 });
 
 export const selectCurrentLanguage = createSelector(
   [selectCurrentLanguageId, selectLanguages],
   (id, languages) => {
-    return languages.find((lng) => lng.id === id);
+    return languages.find(lng => lng.id === id);
   }
 );
 

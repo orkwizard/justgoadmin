@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-function DemoContent() {
+const DemoContent = () => {
   return (
     <div>
       <img
@@ -116,6 +116,6 @@ function DemoContent() {
       </p>
     </div>
   );
-}
+};
 
 export default memo(DemoContent);

@@ -45,7 +45,7 @@ const Root = styled(ListItem)(({ theme, ...props }) => ({
   '& > .fuse-list-item-text': {},
 }));
 
-function FuseNavVerticalItem(props) {
+const FuseNavVerticalItem = props => {
   const { item, nestedLevel, onItemClick } = props;
 
   const itempadding = nestedLevel > 0 ? 38 + nestedLevel * 16 : 16;
@@ -88,7 +88,7 @@ function FuseNavVerticalItem(props) {
     ),
     [item, itempadding, onItemClick]
   );
-}
+};
 
 FuseNavVerticalItem.propTypes = {
   item: PropTypes.shape({

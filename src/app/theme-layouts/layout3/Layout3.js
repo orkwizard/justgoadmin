@@ -31,7 +31,7 @@ const Root = styled('div')(({ theme, config }) => ({
   }),
 }));
 
-function Layout3(props) {
+const Layout3 = props => {
   const config = useSelector(selectFuseCurrentLayoutConfig);
   const appContext = useContext(AppContext);
   const { routes } = appContext;
@@ -78,6 +78,6 @@ function Layout3(props) {
       <FuseMessage />
     </Root>
   );
-}
+};
 
 export default memo(Layout3);

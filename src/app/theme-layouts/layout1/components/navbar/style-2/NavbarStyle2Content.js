@@ -33,7 +33,7 @@ const StyledContent = styled(FuseScrollbars)(({ theme }) => ({
   backgroundAttachment: 'local, scroll',
 }));
 
-function NavbarStyle2Content(props) {
+const NavbarStyle2Content = props => {
   return (
     <Root className={clsx('flex flex-auto flex-col overflow-hidden h-full', props.className)}>
       <div className="flex flex-row items-center shrink-0 h-48 md:h-76 px-12">
@@ -49,6 +49,6 @@ function NavbarStyle2Content(props) {
       </StyledContent>
     </Root>
   );
-}
+};
 
 export default memo(NavbarStyle2Content);

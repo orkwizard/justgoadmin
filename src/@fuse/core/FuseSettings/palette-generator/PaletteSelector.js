@@ -17,7 +17,7 @@ function isDark(color) {
   return getContrastRatio(color, '#ffffff') >= 3;
 }
 
-function PaletteSelector(props) {
+const PaletteSelector = props => {
   const { value } = props;
   const [openDialog, setOpenDialog] = useState(false);
   const theme = useTheme();
@@ -50,7 +50,7 @@ function PaletteSelector(props) {
     setTimeout(() => trigger(['palette.background.paper', 'palette.background.default']));
   }, [formType, openDialog, trigger]);
 
-  const backgroundColorValidation = (v) => {
+  const backgroundColorValidation = v => {
     if (formType === 'light' && isDark(v)) {
       return 'Must be a light color';
     }
@@ -147,7 +147,7 @@ function PaletteSelector(props) {
                 render={({ field: { onChange: _onChange, value: _value } }) => (
                   <TextField
                     value={_value}
-                    onChange={(ev) => {
+                    onChange={ev => {
                       _onChange(ev.target.value);
                       setValue('palette.primary.light', lighten(ev.target.value, 0.8), {
                         shouldDirty: true,
@@ -176,7 +176,7 @@ function PaletteSelector(props) {
                 render={({ field: { onChange: _onChange, value: _value } }) => (
                   <TextField
                     value={_value}
-                    onChange={(ev) => {
+                    onChange={ev => {
                       _onChange(ev.target.value);
                       setValue('palette.secondary.light', lighten(ev.target.value, 0.8), {
                         shouldDirty: true,
@@ -269,7 +269,7 @@ function PaletteSelector(props) {
       </Dialog>
     </>
   );
-}
+};
 
 PaletteSelector.defaultProps = {
   trigger: (

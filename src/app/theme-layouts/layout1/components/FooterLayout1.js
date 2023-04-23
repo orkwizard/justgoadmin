@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { selectFooterTheme } from 'app/store/fuse/settingsSlice';
 import clsx from 'clsx';
 
-function FooterLayout1(props) {
+const FooterLayout1 = props => {
   const footerTheme = useSelector(selectFooterTheme);
 
   return (
@@ -16,7 +16,7 @@ function FooterLayout1(props) {
         className={clsx('relative z-20 shadow-md', props.className)}
         color="default"
         sx={{
-          backgroundColor: (theme) =>
+          backgroundColor: theme =>
             theme.palette.mode === 'light'
               ? footerTheme.palette.background.paper
               : footerTheme.palette.background.default,
@@ -28,6 +28,6 @@ function FooterLayout1(props) {
       </AppBar>
     </ThemeProvider>
   );
-}
+};
 
 export default memo(FooterLayout1);
