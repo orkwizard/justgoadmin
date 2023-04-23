@@ -14,6 +14,14 @@ const navigationConfig = [
     icon: 'heroicons-outline:star',
     url: 'example',
   },
+  {
+    id: 'destinations-component',
+    title: 'Destinations',
+    translate: 'DESTINATIONS',
+    type: 'item',
+    icon: 'heroicons-outline:ticket',
+    url: 'destinations',
+  },
 ];
 
 export default navigationConfig;
