@@ -16,7 +16,7 @@ const Root = styled(FusePageSimple)(({ theme }) => ({
   '& .FusePageSimple-sidebarContent': {},
 }));
 
-const ExamplePage = props => {
+const ExamplePage = () => {
   const { t } = useTranslation('examplePage');
 
   return (
