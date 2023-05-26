@@ -15,58 +15,45 @@ import { Box } from '@mui/system';
 import TableHead from '@mui/material/TableHead';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import { lighten } from '@mui/material/styles';
-import { removeDestinations } from '../store/destinationsSlice';
+
+const removeDestinations = () => {};
 
 const rows = [
   {
-    id: 'image',
-    align: 'left',
-    disablePadding: true,
-    label: '',
-    sort: false,
-  },
-  {
-    id: 'name',
+    id: 'code',
     align: 'left',
     disablePadding: false,
-    label: 'Name',
+    label: 'Code',
     sort: true,
   },
   {
-    id: 'categories',
+    id: 'state.name',
     align: 'left',
     disablePadding: false,
-    label: 'Category',
+    label: 'State',
     sort: true,
   },
   {
-    id: 'priceTaxIncl',
-    align: 'right',
+    id: 'state.country.name',
+    align: 'left',
     disablePadding: false,
-    label: 'Price',
+    label: 'Country',
     sort: true,
   },
   {
-    id: 'quantity',
-    align: 'right',
+    id: 'modelParseDestination.name',
+    align: 'left',
     disablePadding: false,
-    label: 'Quantity',
-    sort: true,
-  },
-  {
-    id: 'active',
-    align: 'right',
-    disablePadding: false,
-    label: 'Active',
+    label: 'Model Parser',
     sort: true,
   },
 ];
 
 const DestinationsTableHead = props => {
-  const { selectedProductIds } = props;
-  const numSelected = selectedProductIds.length;
+  const { selectedDestinyIds } = props;
+  const numSelected = selectedDestinyIds.length;
 
-  const [selectedProductsMenu, setSelectedProductsMenu] = useState(null);
+  const [selectedDestinationsMenu, setSelectedDestinationsMenu] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -74,12 +61,12 @@ const DestinationsTableHead = props => {
     props.onRequestSort(event, property);
   };
 
-  function openSelectedProductsMenu(event) {
-    setSelectedProductsMenu(event.currentTarget);
+  function openSelectedDestinationsMenu(event) {
+    setSelectedDestinationsMenu(event.currentTarget);
   }
 
-  function closeSelectedProductsMenu() {
-    setSelectedProductsMenu(null);
+  function closeSelectedDestinationsMenu() {
+    setSelectedDestinationsMenu(null);
   }
 
   return (
@@ -108,25 +95,25 @@ const DestinationsTableHead = props => {
               }}
             >
               <IconButton
-                aria-owns={selectedProductsMenu ? 'selectedProductsMenu' : null}
+                aria-owns={selectedDestinationsMenu ? 'selectedDestinationsMenu' : null}
                 aria-haspopup="true"
-                onClick={openSelectedProductsMenu}
+                onClick={openSelectedDestinationsMenu}
                 size="large"
               >
                 <FuseSvgIcon>heroicons-outline:dots-horizontal</FuseSvgIcon>
               </IconButton>
               <Menu
-                id="selectedProductsMenu"
-                anchorEl={selectedProductsMenu}
-                open={Boolean(selectedProductsMenu)}
-                onClose={closeSelectedProductsMenu}
+                id="selectedDestinationsMenu"
+                anchorEl={selectedDestinationsMenu}
+                open={Boolean(selectedDestinationsMenu)}
+                onClose={closeSelectedDestinationsMenu}
               >
                 <MenuList>
                   <MenuItem
                     onClick={() => {
-                      dispatch(removeDestinations(selectedProductIds));
+                      dispatch(removeDestinations(selectedDestinyIds));
                       props.onMenuItemClick();
-                      closeSelectedProductsMenu();
+                      closeSelectedDestinationsMenu();
                     }}
                   >
                     <ListItemIcon className="min-w-40">

@@ -1,8 +1,5 @@
-import { useEffect, useState } from 'react';
-
 import FuseLoading from '@fuse/core/FuseLoading';
 import FuseScrollbars from '@fuse/core/FuseScrollbars';
-import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import withRouter from '@fuse/core/withRouter';
 import _ from '@lodash';
 import Checkbox from '@mui/material/Checkbox';
@@ -12,45 +9,53 @@ import TableCell from '@mui/material/TableCell';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
-import clsx from 'clsx';
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 import {
   getDestinations,
   selectDestinations,
-  selectDestinationsSearchText,
+  selectLoading,
+  selectPage,
+  selectRowsPerPage,
+  selectSearchText,
+  selectTotal,
+  setPage,
+  setRowsPerPage,
 } from '../store/destinationsSlice';
 import DestinationsTableHead from './DestinationsTableHead';
 
-const ProductsTable = props => {
+const DestinationsTable = props => {
   const dispatch = useDispatch();
   const destinations = useSelector(selectDestinations);
-  const searchText = useSelector(selectDestinationsSearchText);
+  const loading = useSelector(selectLoading);
+  const searchText = useSelector(selectSearchText);
+  const total = useSelector(selectTotal);
+  const rowsPerPage = useSelector(selectRowsPerPage);
+  const page = useSelector(selectPage);
 
-  const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState([]);
   const [data, setData] = useState(destinations);
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
   const [order, setOrder] = useState({
     direction: 'asc',
     id: null,
   });
 
   useEffect(() => {
-    dispatch(getDestinations()).then(() => setLoading(false));
-  }, [dispatch]);
+    dispatch(getDestinations());
+  }, [dispatch, rowsPerPage]);
 
   useEffect(() => {
     if (searchText.length !== 0) {
       setData(
         _.filter(destinations, item => item.name.toLowerCase().includes(searchText.toLowerCase()))
       );
-      setPage(0);
+      dispatch(setPage(0));
     } else {
       setData(destinations);
     }
-  }, [destinations, searchText]);
+  }, [destinations, searchText, dispatch]);
 
   function handleRequestSort(event, property) {
     const id = property;
@@ -102,13 +107,11 @@ const ProductsTable = props => {
     setSelected(newSelected);
   }
 
-  function handleChangePage(event, value) {
-    setPage(value);
-  }
+  const handlePageChange = (event, value) => {
+    dispatch(setPage(value));
+  };
 
-  function handleChangeRowsPerPage(event) {
-    setRowsPerPage(event.target.value);
-  }
+  const handleRowsPerPageChange = ev => dispatch(setRowsPerPage(ev));
 
   if (loading) {
     return (
@@ -137,7 +140,7 @@ const ProductsTable = props => {
       <FuseScrollbars className="grow overflow-x-auto">
         <Table stickyHeader className="min-w-xl" aria-labelledby="tableTitle">
           <DestinationsTableHead
-            selectedProductIds={selected}
+            selectedDestinyIds={selected}
             order={order}
             onSelectAllClick={handleSelectAllClick}
             onRequestSort={handleRequestSort}
@@ -146,23 +149,8 @@ const ProductsTable = props => {
           />
 
           <TableBody>
-            {_.orderBy(
-              data,
-              [
-                o => {
-                  switch (order.id) {
-                    case 'categories': {
-                      return o.categories[0];
-                    }
-                    default: {
-                      return o[order.id];
-                    }
-                  }
-                },
-              ],
-              [order.direction]
-            )
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            {_.orderBy(data, [destination => _.get(destination, order.id, '')], [order.direction])
+              // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map(n => {
                 const isSelected = selected.indexOf(n.id) !== -1;
                 return (
@@ -174,7 +162,7 @@ const ProductsTable = props => {
                     tabIndex={-1}
                     key={n.id}
                     selected={isSelected}
-                    onClick={event => handleClick(n)}
+                    onClick={() => handleClick(n)}
                   >
                     <TableCell className="w-40 md:w-64 text-center" padding="none">
                       <Checkbox
@@ -184,62 +172,20 @@ const ProductsTable = props => {
                       />
                     </TableCell>
 
-                    <TableCell
-                      className="w-52 px-4 md:px-0"
-                      component="th"
-                      scope="row"
-                      padding="none"
-                    >
-                      {n.images.length > 0 && n.featuredImageId ? (
-                        <img
-                          className="w-full block rounded"
-                          src={_.find(n.images, { id: n.featuredImageId }).url}
-                          alt={n.name}
-                        />
-                      ) : (
-                        <img
-                          className="w-full block rounded"
-                          src="assets/images/apps/ecommerce/product-image-placeholder.png"
-                          alt={n.name}
-                        />
-                      )}
-                    </TableCell>
-
                     <TableCell className="p-4 md:p-16" component="th" scope="row">
                       {n.name}
                     </TableCell>
 
                     <TableCell className="p-4 md:p-16 truncate" component="th" scope="row">
-                      {n.categories.join(', ')}
+                      {n.state.name}
                     </TableCell>
 
-                    <TableCell className="p-4 md:p-16" component="th" scope="row" align="right">
-                      <span>$</span>
-                      {n.priceTaxIncl}
+                    <TableCell className="p-4 md:p-16" component="th" scope="row">
+                      {n.state.country.name}
                     </TableCell>
 
-                    <TableCell className="p-4 md:p-16" component="th" scope="row" align="right">
-                      {n.quantity}
-                      <i
-                        className={clsx(
-                          'inline-block w-8 h-8 rounded mx-8',
-                          n.quantity <= 5 && 'bg-red',
-                          n.quantity > 5 && n.quantity <= 25 && 'bg-orange',
-                          n.quantity > 25 && 'bg-green'
-                        )}
-                      />
-                    </TableCell>
-
-                    <TableCell className="p-4 md:p-16" component="th" scope="row" align="right">
-                      {n.active ? (
-                        <FuseSvgIcon className="text-green" size={20}>
-                          heroicons-outline:check-circle
-                        </FuseSvgIcon>
-                      ) : (
-                        <FuseSvgIcon className="text-red" size={20}>
-                          heroicons-outline:minus-circle
-                        </FuseSvgIcon>
-                      )}
+                    <TableCell className="p-4 md:p-16" component="th" scope="row">
+                      {n.modelParseDestination?.name ?? ''}
                     </TableCell>
                   </TableRow>
                 );
@@ -248,10 +194,10 @@ const ProductsTable = props => {
         </Table>
       </FuseScrollbars>
 
-      <TablePagination
+      <TablePaginationStyled
         className="shrink-0 border-t-1"
         component="div"
-        count={data.length}
+        count={total}
         rowsPerPage={rowsPerPage}
         page={page}
         backIconButtonProps={{
@@ -260,11 +206,23 @@ const ProductsTable = props => {
         nextIconButtonProps={{
           'aria-label': 'Next Page',
         }}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
+        onPageChange={handlePageChange}
+        onRowsPerPageChange={handleRowsPerPageChange}
       />
     </div>
   );
 };
 
-export default withRouter(ProductsTable);
+const TablePaginationStyled = styled(TablePagination)`
+  &&& {
+    &
+      > div
+      > div.MuiInputBase-root.MuiInputBase-colorSecondary.muiltr-khdx6p-MuiInputBase-root-MuiTablePagination-select
+      > * {
+      display: flex;
+      align-items: center;
+    }
+  }
+`;
+
+export default withRouter(DestinationsTable);

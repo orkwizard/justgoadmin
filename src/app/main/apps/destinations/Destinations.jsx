@@ -1,6 +1,6 @@
 import FusePageCarded from '@fuse/core/FusePageCarded';
-import withReducer from 'app/store/withReducer';
 import useThemeMediaQuery from '@fuse/hooks/useThemeMediaQuery';
+import withReducer from 'app/store/withReducer';
 import reducer from '../store';
 import DestinationsHeader from './DestinationsHeader';
 import DestinationsTable from './DestinationsTable';
@@ -17,4 +17,4 @@ const Destinations = () => {
   );
 };
 
-export default withReducer('justGo', reducer)(Destinations);
+export default withReducer('destinations', reducer)(Destinations);

@@ -1,49 +1,114 @@
-import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit';
+import mock10 from './mock-10';
+import mock25 from './mock-25';
+import mock50 from './mock-50';
+import mock100 from './mock-100';
 
-export const getDestinations = createAsyncThunk('justGo/getDestinations', async () => {
-  const response = await axios.get('/api/ecommerce/products');
-  const data = await response.data;
+const sleep = async ms => {
+  // eslint-disable-next-line no-new
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
+};
 
-  return data;
-});
+export const getDestinations = createAsyncThunk(
+  'destinations/getDestinations',
+  async (params, thunkAPI) => {
+    const state = thunkAPI.getState();
+    console.log('🚀 ~ destinationsSlice.js', { arg: params, state, thunkAPI });
+    await sleep(5000);
 
-export const removeDestinations = createAsyncThunk(
-  'justGo',
-  async (destinationIds, { dispatch, getState }) => {
-    await axios.delete('/api/ecommerce/products', { data: destinationIds });
+    switch (state?.destinations?.destinations?.rowsPerPage ?? 10) {
+      case 10:
+        return mock10.data;
 
-    return destinationIds;
+      case 25:
+        return mock25.data;
+
+      case 50:
+        return mock50.data;
+
+      case 100:
+        return mock100.data;
+
+      default:
+        return {};
+    }
   }
 );
 
-const destinationsAdapter = createEntityAdapter({});
+const destinationAdapter = createEntityAdapter({});
 
-export const { selectAll: selectDestinations, selectById: selectDestinationById } =
-  destinationsAdapter.getSelectors(state => state.justGo.destinations);
-
-const destinationsSlice = createSlice({
-  name: 'justGo',
-  initialState: destinationsAdapter.getInitialState({
+const destinationSlice = createSlice({
+  name: 'destinations',
+  initialState: destinationAdapter.getInitialState({
+    loading: false,
     searchText: '',
+    total: 0,
+    rowsPerPage: 10,
+    page: 0,
   }),
+
   reducers: {
-    setDestinationsSearchText: {
+    setSearchText: {
       reducer: (state, action) => {
         state.searchText = action.payload;
       },
-      prepare: event => ({ payload: event.target.value || '' }),
+
+      prepare: evt => ({ payload: evt?.target?.value ?? '' }),
+    },
+
+    setRowsPerPage: {
+      reducer: (state, action) => {
+        state.rowsPerPage = action.payload;
+      },
+
+      prepare: evt => ({ payload: evt?.target?.value ?? 10 }),
+    },
+
+    setPage: {
+      reducer: (state, action) => {
+        state.page = action.payload;
+      },
+
+      prepare: page => ({ payload: page ?? 0 }),
     },
   },
+
   extraReducers: {
-    [getDestinations.fulfilled]: destinationsAdapter.setAll,
-    [removeDestinations.fulfilled]: (state, action) =>
-      destinationsAdapter.removeMany(state, action.payload),
+    [getDestinations.pending]: state => {
+      state.loading = true;
+    },
+
+    [getDestinations.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.total = action.payload.totalElements;
+      state.rowsPerPage = action.payload.pageable.pageSize;
+      state.page = action.payload.pageable.pageNumber;
+
+      action.payload = action.payload.content;
+
+      return destinationAdapter.setAll(state, action);
+    },
+
+    [getDestinations.rejected]: (state, action) => {
+      state.loading = false;
+
+      console.log('🚀 ~ destinationsSlice.js ~ getDestinations.rejected', { state, action });
+    },
   },
 });
 
-export const { setDestinationsSearchText } = destinationsSlice.actions;
+export const { selectAll: selectDestinations } = destinationAdapter.getSelectors(
+  ({ destinations }) => destinations.destinations
+);
 
-export const selectDestinationsSearchText = ({ justGo }) => justGo.destinations.searchText;
+export const { setSearchText, setRowsPerPage, setPage } = destinationSlice.actions;
 
-export default destinationsSlice.reducer;
+export const selectLoading = ({ destinations }) => destinations.destinations.loading;
+export const selectSearchText = ({ destinations }) => destinations.destinations.searchText;
+export const selectTotal = ({ destinations }) => destinations.destinations.total;
+export const selectRowsPerPage = ({ destinations }) => destinations.destinations.rowsPerPage;
+export const selectPage = ({ destinations }) => destinations.destinations.page;
+
+export default destinationSlice.reducer;
