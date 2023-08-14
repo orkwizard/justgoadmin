@@ -1,3 +1,4 @@
+import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -6,17 +7,14 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import TableCell from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Tooltip from '@mui/material/Tooltip';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Box } from '@mui/system';
-import TableHead from '@mui/material/TableHead';
-import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import { lighten } from '@mui/material/styles';
-
-const removeDestinations = () => {};
+import { Box } from '@mui/system';
+import { useState } from 'react';
+import useDestinations from 'src/app/hooks/useDestinations';
 
 const rows = [
   {
@@ -52,10 +50,9 @@ const rows = [
 const DestinationsTableHead = props => {
   const { selectedDestinyIds } = props;
   const numSelected = selectedDestinyIds.length;
+  const { removeDestinations } = useDestinations();
 
   const [selectedDestinationsMenu, setSelectedDestinationsMenu] = useState(null);
-
-  const dispatch = useDispatch();
 
   const createSortHandler = property => event => {
     props.onRequestSort(event, property);
@@ -111,7 +108,7 @@ const DestinationsTableHead = props => {
                 <MenuList>
                   <MenuItem
                     onClick={() => {
-                      dispatch(removeDestinations(selectedDestinyIds));
+                      removeDestinations(selectedDestinyIds);
                       props.onMenuItemClick();
                       closeSelectedDestinationsMenu();
                     }}

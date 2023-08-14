@@ -5,17 +5,15 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { selectSearchText, setSearchText } from '../store/destinationsSlice';
+import useDestinations from 'src/app/hooks/useDestinations';
 
 const DestinationsHeader = () => {
   const { t } = useTranslation('destinationsApp');
-  const dispatch = useDispatch();
-  const searchText = useSelector(selectSearchText);
+  const { searchText, setSearchText } = useDestinations();
 
   const handleSearchTextChange = evt => {
-    dispatch(setSearchText(evt));
+    setSearchText(evt);
   };
 
   return (

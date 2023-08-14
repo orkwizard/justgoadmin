@@ -11,29 +11,22 @@ import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import useDestinations from 'src/app/hooks/useDestinations';
 import styled from 'styled-components';
-import {
-  getDestinations,
-  selectDestinations,
-  selectLoading,
-  selectPage,
-  selectRowsPerPage,
-  selectSearchText,
-  selectTotal,
-  setPage,
-  setRowsPerPage,
-} from '../store/destinationsSlice';
 import DestinationsTableHead from './DestinationsTableHead';
 
 const DestinationsTable = props => {
-  const dispatch = useDispatch();
-  const destinations = useSelector(selectDestinations);
-  const loading = useSelector(selectLoading);
-  const searchText = useSelector(selectSearchText);
-  const total = useSelector(selectTotal);
-  const rowsPerPage = useSelector(selectRowsPerPage);
-  const page = useSelector(selectPage);
+  const {
+    destinations,
+    getDestinations,
+    loading,
+    searchText,
+    total,
+    rowsPerPage,
+    setRowsPerPage,
+    page,
+    setPage,
+  } = useDestinations();
 
   const [selected, setSelected] = useState([]);
   const [data, setData] = useState(destinations);
@@ -43,19 +36,19 @@ const DestinationsTable = props => {
   });
 
   useEffect(() => {
-    dispatch(getDestinations());
-  }, [dispatch, rowsPerPage]);
+    getDestinations();
+  }, [getDestinations, rowsPerPage]);
 
   useEffect(() => {
     if (searchText.length !== 0) {
       setData(
         _.filter(destinations, item => item.name.toLowerCase().includes(searchText.toLowerCase()))
       );
-      dispatch(setPage(0));
+      setPage(0);
     } else {
       setData(destinations);
     }
-  }, [destinations, searchText, dispatch]);
+  }, [destinations, searchText, setPage]);
 
   function handleRequestSort(event, property) {
     const id = property;
@@ -108,10 +101,10 @@ const DestinationsTable = props => {
   }
 
   const handlePageChange = (event, value) => {
-    dispatch(setPage(value));
+    setPage(value);
   };
 
-  const handleRowsPerPageChange = ev => dispatch(setRowsPerPage(ev));
+  const handleRowsPerPageChange = evt => setRowsPerPage(evt);
 
   if (loading) {
     return (
