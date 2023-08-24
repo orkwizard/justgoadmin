@@ -32,7 +32,7 @@ instance.interceptors.response.use(async response => {
   const { apiCode } = response.data;
   const originalRequest = response.config;
 
-  if (['E_SIGNATURE_INVALID'].includes(apiCode)) {
+  if (['E_SIGNATURE_INVALID', 'E_EXPIRED_TOKEN'].includes(apiCode)) {
     let config;
     if (apiCode === 'E_SIGNATURE_INVALID') {
       config = {
