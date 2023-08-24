@@ -29,7 +29,7 @@ const DestinationsTable = props => {
   } = useDestinations();
 
   const [selected, setSelected] = useState([]);
-  const [data, setData] = useState(destinations);
+  const [data, setData] = useState([]);
   const [order, setOrder] = useState({
     direction: 'asc',
     id: null,
@@ -37,20 +37,13 @@ const DestinationsTable = props => {
 
   useEffect(() => {
     getDestinations();
-  }, [getDestinations, rowsPerPage]);
+  }, [getDestinations, searchText, rowsPerPage, page]);
 
   useEffect(() => {
-    if (searchText.length !== 0) {
-      setData(
-        _.filter(destinations, item => item.name.toLowerCase().includes(searchText.toLowerCase()))
-      );
-      setPage(0);
-    } else {
-      setData(destinations);
-    }
-  }, [destinations, searchText, setPage]);
+    setData(destinations ?? []);
+  }, [destinations]);
 
-  function handleRequestSort(event, property) {
+  const handleRequestSort = (event, property) => {
     const id = property;
     let direction = 'desc';
 
@@ -62,25 +55,25 @@ const DestinationsTable = props => {
       direction,
       id,
     });
-  }
+  };
 
-  function handleSelectAllClick(event) {
+  const handleSelectAllClick = event => {
     if (event.target.checked) {
       setSelected(data.map(n => n.id));
       return;
     }
     setSelected([]);
-  }
+  };
 
-  function handleDeselect() {
+  const handleDeselect = () => {
     setSelected([]);
-  }
+  };
 
-  function handleClick(item) {
+  const handleClick = item => {
     props.navigate(`/destinations/${item.id}/${item.handle}`);
-  }
+  };
 
-  function handleCheck(event, id) {
+  const handleCheck = (event, id) => {
     const selectedIndex = selected.indexOf(id);
     let newSelected = [];
 
@@ -98,13 +91,7 @@ const DestinationsTable = props => {
     }
 
     setSelected(newSelected);
-  }
-
-  const handlePageChange = (event, value) => {
-    setPage(value);
   };
-
-  const handleRowsPerPageChange = evt => setRowsPerPage(evt);
 
   if (loading) {
     return (
@@ -199,8 +186,8 @@ const DestinationsTable = props => {
         nextIconButtonProps={{
           'aria-label': 'Next Page',
         }}
-        onPageChange={handlePageChange}
-        onRowsPerPageChange={handleRowsPerPageChange}
+        onPageChange={setPage}
+        onRowsPerPageChange={setRowsPerPage}
       />
     </div>
   );

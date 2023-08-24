@@ -12,10 +12,6 @@ const DestinationsHeader = () => {
   const { t } = useTranslation('destinationsApp');
   const { searchText, setSearchText } = useDestinations();
 
-  const handleSearchTextChange = evt => {
-    setSearchText(evt);
-  };
-
   return (
     <div className="flex flex-col sm:flex-row space-y-16 sm:space-y-0 flex-1 w-full items-center justify-between py-32 px-24 md:px-32">
       <Typography
@@ -46,7 +42,7 @@ const DestinationsHeader = () => {
             inputProps={{
               'aria-label': 'Search',
             }}
-            onChange={handleSearchTextChange}
+            onChange={setSearchText}
           />
         </Paper>
 

@@ -1,53 +1,33 @@
-import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit';
-import mock10 from './mock-10';
-import mock25 from './mock-25';
-import mock50 from './mock-50';
-import mock100 from './mock-100';
+import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import { getDestinations } from 'src/app/services/destinations';
 
-const sleep = async ms => {
-  // eslint-disable-next-line no-new
-  return new Promise(resolve => {
-    setTimeout(resolve, ms);
-  });
-};
-
-export const getDestinations = createAsyncThunk(
+export const getDestinationsThunk = createAsyncThunk(
   'destinations/getDestinations',
   async (params, thunkAPI) => {
     const state = thunkAPI.getState();
-    console.log('🚀 ~ destinationsSlice.js', { arg: params, state, thunkAPI });
-    await sleep(5000);
+    const { searchText, page, rowsPerPage } = state.destinations.destinations;
 
-    switch (state?.destinations?.destinations?.rowsPerPage ?? 10) {
-      case 10:
-        return mock10.data;
-
-      case 25:
-        return mock25.data;
-
-      case 50:
-        return mock50.data;
-
-      case 100:
-        return mock100.data;
-
-      default:
-        return {};
-    }
+    return getDestinations({
+      searchText,
+      page: page + 1,
+      rowsPerPage,
+    });
   }
 );
 
 const destinationAdapter = createEntityAdapter({});
 
+const initialState = {
+  loading: false,
+  searchText: '',
+  total: 0,
+  rowsPerPage: 10,
+  page: 0,
+};
+
 const destinationSlice = createSlice({
   name: 'destinations',
-  initialState: destinationAdapter.getInitialState({
-    loading: false,
-    searchText: '',
-    total: 0,
-    rowsPerPage: 10,
-    page: 0,
-  }),
+  initialState: destinationAdapter.getInitialState(initialState),
 
   reducers: {
     setSearchText: {
@@ -55,7 +35,7 @@ const destinationSlice = createSlice({
         state.searchText = action.payload;
       },
 
-      prepare: evt => ({ payload: evt?.target?.value ?? '' }),
+      prepare: evt => ({ payload: evt?.target?.value ?? initialState.searchText }),
     },
 
     setRowsPerPage: {
@@ -63,7 +43,7 @@ const destinationSlice = createSlice({
         state.rowsPerPage = action.payload;
       },
 
-      prepare: evt => ({ payload: evt?.target?.value ?? 10 }),
+      prepare: evt => ({ payload: evt?.target?.value ?? initialState.rowsPerPage }),
     },
 
     setPage: {
@@ -71,30 +51,32 @@ const destinationSlice = createSlice({
         state.page = action.payload;
       },
 
-      prepare: page => ({ payload: page ?? 0 }),
+      prepare: page => ({ payload: page ?? initialState.page }),
     },
   },
 
   extraReducers: {
-    [getDestinations.pending]: state => {
+    [getDestinationsThunk.pending]: state => {
       state.loading = true;
     },
 
-    [getDestinations.fulfilled]: (state, action) => {
+    [getDestinationsThunk.fulfilled]: (state, action) => {
+      // console.log('🚀 ~ destinationsSlice.js', JSON.parse(JSON.stringify({ state, action })));
+
+      const { totalElements, pageable, content } = action.payload;
+
       state.loading = false;
-      state.total = action.payload.totalElements;
-      state.rowsPerPage = action.payload.pageable.pageSize;
-      state.page = action.payload.pageable.pageNumber;
+      state.total = totalElements;
+      state.rowsPerPage = pageable.pageSize;
+      state.page = pageable.pageNumber;
 
-      action.payload = action.payload.content;
-
+      action.payload = content;
       return destinationAdapter.setAll(state, action);
     },
 
-    [getDestinations.rejected]: (state, action) => {
+    [getDestinationsThunk.rejected]: (state, action) => {
+      // console.log('🚀 ~ destinationsSlice.js', JSON.parse(JSON.stringify({ state, action })));
       state.loading = false;
-
-      console.log('🚀 ~ destinationsSlice.js ~ getDestinations.rejected', { state, action });
     },
   },
 });

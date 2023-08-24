@@ -58,13 +58,13 @@ const DestinationsTableHead = props => {
     props.onRequestSort(event, property);
   };
 
-  function openSelectedDestinationsMenu(event) {
+  const openSelectedDestinationsMenu = event => {
     setSelectedDestinationsMenu(event.currentTarget);
-  }
+  };
 
-  function closeSelectedDestinationsMenu() {
+  const closeSelectedDestinationsMenu = () => {
     setSelectedDestinationsMenu(null);
-  }
+  };
 
   return (
     <TableHead>

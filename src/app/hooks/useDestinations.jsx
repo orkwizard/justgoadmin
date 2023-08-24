@@ -1,7 +1,8 @@
+import { useDebounce } from '@fuse/hooks';
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  getDestinations,
+  getDestinationsThunk,
   selectDestinations,
   selectLoading,
   selectPage,
@@ -22,6 +23,10 @@ const useDestinations = () => {
   const rowsPerPage = useSelector(selectRowsPerPage);
   const page = useSelector(selectPage);
 
+  const getDestinations = useDebounce(params => {
+    dispatch(getDestinationsThunk(params));
+  }, 300);
+
   return {
     destinations,
     loading,
@@ -30,9 +35,7 @@ const useDestinations = () => {
     rowsPerPage,
     page,
 
-    getDestinations: useCallback(() => {
-      dispatch(getDestinations());
-    }, [dispatch]),
+    getDestinations,
 
     removeDestinations: ids => {
       console.log('🚀 ~ useDestinations.jsx', { ids });
@@ -41,21 +44,26 @@ const useDestinations = () => {
     setSearchText: useCallback(
       evt => {
         dispatch(setSearchText(evt));
+        dispatch(setPage(0));
       },
+
       [dispatch]
     ),
 
     setRowsPerPage: useCallback(
       evt => {
         dispatch(setRowsPerPage(evt));
+        dispatch(setPage(0));
       },
+
       [dispatch]
     ),
 
     setPage: useCallback(
-      newPage => {
-        dispatch(setPage(newPage));
+      (event, value) => {
+        dispatch(setPage(value));
       },
+
       [dispatch]
     ),
   };
