@@ -61,8 +61,9 @@ const destinationSlice = createSlice({
     },
 
     [getDestinationsThunk.fulfilled]: (state, action) => {
-      // console.log('🚀 ~ destinationsSlice.js', JSON.parse(JSON.stringify({ state, action })));
+      if (Array.isArray(action?.payload)) return [];
 
+      // console.log('🚀 ~ destinationsSlice.js', JSON.parse(JSON.stringify({ state, action })));
       const { totalElements, pageable, content } = action.payload;
 
       state.loading = false;

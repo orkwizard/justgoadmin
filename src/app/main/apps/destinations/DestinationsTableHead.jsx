@@ -14,6 +14,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { lighten } from '@mui/material/styles';
 import { Box } from '@mui/system';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import useDestinations from 'src/app/hooks/useDestinations';
 
 const rows = [
@@ -21,36 +22,38 @@ const rows = [
     id: 'code',
     align: 'left',
     disablePadding: false,
-    label: 'Code',
+    label: 'CODE',
     sort: true,
   },
   {
     id: 'state.name',
     align: 'left',
     disablePadding: false,
-    label: 'State',
+    label: 'STATE',
     sort: true,
   },
   {
     id: 'state.country.name',
     align: 'left',
     disablePadding: false,
-    label: 'Country',
+    label: 'COUNTRY',
     sort: true,
   },
   {
     id: 'modelParseDestination.name',
     align: 'left',
     disablePadding: false,
-    label: 'Model Parser',
+    label: 'MODEL_PARSER',
     sort: true,
   },
 ];
 
 const DestinationsTableHead = props => {
+  const { t } = useTranslation('destinationsApp');
+  const { removeDestinations } = useDestinations();
+
   const { selectedDestinyIds } = props;
   const numSelected = selectedDestinyIds.length;
-  const { removeDestinations } = useDestinations();
 
   const [selectedDestinationsMenu, setSelectedDestinationsMenu] = useState(null);
 
@@ -138,22 +141,7 @@ const DestinationsTableHead = props => {
               padding={row.disablePadding ? 'none' : 'normal'}
               sortDirection={props.order.id === row.id ? props.order.direction : false}
             >
-              {row.sort && (
-                <Tooltip
-                  title="Sort"
-                  placement={row.align === 'right' ? 'bottom-end' : 'bottom-start'}
-                  enterDelay={300}
-                >
-                  <TableSortLabel
-                    active={props.order.id === row.id}
-                    direction={props.order.direction}
-                    onClick={createSortHandler(row.id)}
-                    className="font-semibold"
-                  >
-                    {row.label}
-                  </TableSortLabel>
-                </Tooltip>
-              )}
+              {t(row.label)}
             </TableCell>
           );
         }, this)}
