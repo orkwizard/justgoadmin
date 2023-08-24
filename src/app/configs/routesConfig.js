@@ -4,17 +4,16 @@ import settingsConfig from 'app/configs/settingsConfig';
 import { Navigate } from 'react-router-dom';
 import Error404Page from '../main/404/Error404Page';
 import appsConfigs from '../main/apps/appsConfigs';
-import ExampleConfig from '../main/example/ExampleConfig';
 import SignInConfig from '../main/sign-in/SignInConfig';
 import SignOutConfig from '../main/sign-out/SignOutConfig';
 
-const routeConfigs = [appsConfigs, ExampleConfig, SignOutConfig, SignInConfig];
+const routeConfigs = [appsConfigs, SignOutConfig, SignInConfig];
 
 const routes = [
   ...FuseUtils.generateRoutesFromConfigs(routeConfigs, settingsConfig.defaultAuth),
   {
     path: '/',
-    element: <Navigate to="/example" />,
+    element: <Navigate to="/destinations" />,
     auth: settingsConfig.defaultAuth,
   },
   {
