@@ -30,10 +30,6 @@ const DestinationsTable = props => {
 
   const [selected, setSelected] = useState([]);
   const [data, setData] = useState([]);
-  const [order, setOrder] = useState({
-    direction: 'asc',
-    id: null,
-  });
 
   useEffect(() => {
     getDestinations();
@@ -42,20 +38,6 @@ const DestinationsTable = props => {
   useEffect(() => {
     setData(destinations ?? []);
   }, [destinations]);
-
-  const handleRequestSort = (event, property) => {
-    const id = property;
-    let direction = 'desc';
-
-    if (order.id === property && order.direction === 'desc') {
-      direction = 'asc';
-    }
-
-    setOrder({
-      direction,
-      id,
-    });
-  };
 
   const handleSelectAllClick = event => {
     if (event.target.checked) {
@@ -121,55 +103,51 @@ const DestinationsTable = props => {
         <Table stickyHeader className="min-w-xl" aria-labelledby="tableTitle">
           <DestinationsTableHead
             selectedDestinyIds={selected}
-            order={order}
             onSelectAllClick={handleSelectAllClick}
-            onRequestSort={handleRequestSort}
             rowCount={data.length}
             onMenuItemClick={handleDeselect}
           />
 
           <TableBody>
-            {_.orderBy(data, [destination => _.get(destination, order.id, '')], [order.direction])
-              // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map(n => {
-                const isSelected = selected.indexOf(n.id) !== -1;
-                return (
-                  <TableRow
-                    className="h-72 cursor-pointer"
-                    hover
-                    role="checkbox"
-                    aria-checked={isSelected}
-                    tabIndex={-1}
-                    key={n.id}
-                    selected={isSelected}
-                    onClick={() => handleClick(n)}
-                  >
-                    <TableCell className="w-40 md:w-64 text-center" padding="none">
-                      <Checkbox
-                        checked={isSelected}
-                        onClick={event => event.stopPropagation()}
-                        onChange={event => handleCheck(event, n.id)}
-                      />
-                    </TableCell>
+            {data.map(n => {
+              const isSelected = selected.indexOf(n.id) !== -1;
+              return (
+                <TableRow
+                  className="h-72 cursor-pointer"
+                  hover
+                  role="checkbox"
+                  aria-checked={isSelected}
+                  tabIndex={-1}
+                  key={n.id}
+                  selected={isSelected}
+                  onClick={() => handleClick(n)}
+                >
+                  <TableCell className="w-40 md:w-64 text-center" padding="none">
+                    <Checkbox
+                      checked={isSelected}
+                      onClick={event => event.stopPropagation()}
+                      onChange={event => handleCheck(event, n.id)}
+                    />
+                  </TableCell>
 
-                    <TableCell className="p-4 md:p-16" component="th" scope="row">
-                      {n.name}
-                    </TableCell>
+                  <TableCell className="p-4 md:p-16" component="th" scope="row">
+                    {n.name}
+                  </TableCell>
 
-                    <TableCell className="p-4 md:p-16 truncate" component="th" scope="row">
-                      {n.state.name}
-                    </TableCell>
+                  <TableCell className="p-4 md:p-16 truncate" component="th" scope="row">
+                    {n.state.name}
+                  </TableCell>
 
-                    <TableCell className="p-4 md:p-16" component="th" scope="row">
-                      {n.state.country.name}
-                    </TableCell>
+                  <TableCell className="p-4 md:p-16" component="th" scope="row">
+                    {n.state.country.name}
+                  </TableCell>
 
-                    <TableCell className="p-4 md:p-16" component="th" scope="row">
-                      {n.modelParseDestination?.name ?? ''}
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
+                  <TableCell className="p-4 md:p-16" component="th" scope="row">
+                    {n.modelParseDestination?.name ?? ''}
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </FuseScrollbars>

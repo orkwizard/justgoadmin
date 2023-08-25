@@ -57,10 +57,6 @@ const DestinationsTableHead = props => {
 
   const [selectedDestinationsMenu, setSelectedDestinationsMenu] = useState(null);
 
-  const createSortHandler = property => event => {
-    props.onRequestSort(event, property);
-  };
-
   const openSelectedDestinationsMenu = event => {
     setSelectedDestinationsMenu(event.currentTarget);
   };
@@ -139,7 +135,6 @@ const DestinationsTableHead = props => {
               key={row.id}
               align={row.align}
               padding={row.disablePadding ? 'none' : 'normal'}
-              sortDirection={props.order.id === row.id ? props.order.direction : false}
             >
               {t(row.label)}
             </TableCell>
