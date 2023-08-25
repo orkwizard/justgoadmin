@@ -17,4 +17,4 @@ const Destinations = () => {
   );
 };
 
-export default withReducer('destinations', reducer)(Destinations);
+export default withReducer('justGo', reducer)(Destinations);
