@@ -37,13 +37,7 @@
     "no-param-reassign": "off", // mutating redux state in redux-toolkit.
     "import/no-unresolved": "off", // raw-loader
     "global-require": "off", // raw-loader
-    "react/function-component-definition": [
-      "error",
-      {
-        "namedComponents": "arrow-function",
-        "unnamedComponents": "arrow-function"
-      }
-    ],
+    "react/function-component-definition": "off",
     "react/no-array-index-key": "off",
     "react/no-unescaped-entities": "off",
     "react/destructuring-assignment": "off",
