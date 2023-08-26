@@ -9,13 +9,11 @@ import MenuList from '@mui/material/MenuList';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import TableSortLabel from '@mui/material/TableSortLabel';
-import Tooltip from '@mui/material/Tooltip';
 import { lighten } from '@mui/material/styles';
 import { Box } from '@mui/system';
+import useDestinations from 'app/hooks/useDestinations';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import useDestinations from 'src/app/hooks/useDestinations';
 
 const rows = [
   {

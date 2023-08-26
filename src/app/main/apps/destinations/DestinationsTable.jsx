@@ -1,7 +1,6 @@
 import FuseLoading from '@fuse/core/FuseLoading';
 import FuseScrollbars from '@fuse/core/FuseScrollbars';
 import withRouter from '@fuse/core/withRouter';
-import _ from '@lodash';
 import Checkbox from '@mui/material/Checkbox';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,9 +8,9 @@ import TableCell from '@mui/material/TableCell';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
+import useDestinations from 'app/hooks/useDestinations';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import useDestinations from 'src/app/hooks/useDestinations';
 import styled from 'styled-components';
 import DestinationsTableHead from './DestinationsTableHead';
 

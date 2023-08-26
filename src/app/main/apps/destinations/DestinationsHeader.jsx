@@ -3,10 +3,10 @@ import Button from '@mui/material/Button';
 import Input from '@mui/material/Input';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import useDestinations from 'app/hooks/useDestinations';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import useDestinations from 'src/app/hooks/useDestinations';
 
 const DestinationsHeader = () => {
   const { t } = useTranslation('destinationsApp');
