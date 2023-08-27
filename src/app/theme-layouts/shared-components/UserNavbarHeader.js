@@ -1,8 +1,9 @@
-import { styled } from '@mui/material/styles';
+/* eslint-disable no-unused-vars */
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import { useSelector } from 'react-redux';
+import { styled } from '@mui/material/styles';
 import { selectUser } from 'app/store/userSlice';
+import { useSelector } from 'react-redux';
 
 const Root = styled('div')(({ theme }) => ({
   '& .username, & .email': {

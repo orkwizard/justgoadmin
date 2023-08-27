@@ -1,13 +1,14 @@
+/* eslint-disable no-unused-vars */
 import Button from '@mui/material/Button';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import MenuItem from '@mui/material/MenuItem';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
+import { changeLanguage, selectCurrentLanguage, selectLanguages } from 'app/store/i18nSlice';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { changeLanguage, selectCurrentLanguage, selectLanguages } from 'app/store/i18nSlice';
 
 const LanguageSwitcher = props => {
   const currentLanguage = useSelector(selectCurrentLanguage);

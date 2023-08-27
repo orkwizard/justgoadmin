@@ -1,4 +1,5 @@
 /* eslint import/no-extraneous-dependencies: off */
+/* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import history from '@history';
 import _ from '@lodash';

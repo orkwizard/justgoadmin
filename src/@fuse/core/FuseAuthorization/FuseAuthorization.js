@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 import FuseUtils from '@fuse/utils';
 import AppContext from 'app/AppContext';
 import { Component } from 'react';

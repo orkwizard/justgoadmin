@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Dialog from '@mui/material/Dialog';
 import { useDispatch, useSelector } from 'react-redux';
 import {

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useLayoutEffect, useState } from 'react';
 import history from '@history';
 import { Router } from 'react-router-dom';

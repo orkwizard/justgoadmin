@@ -1,19 +1,20 @@
+/* eslint-disable no-unused-vars */
 import FuseDialog from '@fuse/core/FuseDialog';
-import { styled } from '@mui/material/styles';
 import FuseMessage from '@fuse/core/FuseMessage';
 import FuseSuspense from '@fuse/core/FuseSuspense';
+import { styled } from '@mui/material/styles';
+import AppContext from 'app/AppContext';
+import { selectFuseCurrentLayoutConfig } from 'app/store/fuse/settingsSlice';
 import clsx from 'clsx';
 import { memo, useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { useRoutes } from 'react-router-dom';
-import AppContext from 'app/AppContext';
-import { selectFuseCurrentLayoutConfig } from 'app/store/fuse/settingsSlice';
+import SettingsPanel from '../shared-components/SettingsPanel';
 import FooterLayout3 from './components/FooterLayout3';
 import LeftSideLayout3 from './components/LeftSideLayout3';
 import NavbarWrapperLayout3 from './components/NavbarWrapperLayout3';
 import RightSideLayout3 from './components/RightSideLayout3';
 import ToolbarLayout3 from './components/ToolbarLayout3';
-import SettingsPanel from '../shared-components/SettingsPanel';
 
 const Root = styled('div')(({ theme, config }) => ({
   ...(config.mode === 'boxed' && {

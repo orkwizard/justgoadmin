@@ -1,15 +1,16 @@
+/* eslint-disable no-unused-vars */
+import FuseNavigation from '@fuse/core/FuseNavigation';
 import FuseScrollbars from '@fuse/core/FuseScrollbars';
-import { styled, useTheme } from '@mui/material/styles';
+import useThemeMediaQuery from '@fuse/hooks/useThemeMediaQuery';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
+import { styled, useTheme } from '@mui/material/styles';
+import { navbarCloseMobile } from 'app/store/fuse/navbarSlice';
+import { selectNavigation } from 'app/store/fuse/navigationSlice';
+import { selectContrastMainTheme } from 'app/store/fuse/settingsSlice';
 import clsx from 'clsx';
 import { memo, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import FuseNavigation from '@fuse/core/FuseNavigation';
-import { navbarCloseMobile } from 'app/store/fuse/navbarSlice';
-import { selectContrastMainTheme } from 'app/store/fuse/settingsSlice';
 import { useLocation } from 'react-router-dom';
-import useThemeMediaQuery from '@fuse/hooks/useThemeMediaQuery';
-import { selectNavigation } from 'app/store/fuse/navigationSlice';
 
 const Root = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.default,

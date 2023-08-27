@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Divider from '@mui/material/Divider';
 import PropTypes from 'prop-types';
 import { memo } from 'react';

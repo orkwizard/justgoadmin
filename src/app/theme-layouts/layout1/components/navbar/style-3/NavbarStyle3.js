@@ -1,10 +1,11 @@
-import Hidden from '@mui/material/Hidden';
-import { styled } from '@mui/material/styles';
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import { useDispatch, useSelector } from 'react-redux';
-import { navbarCloseMobile, selectFuseNavbar } from 'app/store/fuse/navbarSlice';
+/* eslint-disable no-unused-vars */
 import GlobalStyles from '@mui/material/GlobalStyles';
+import Hidden from '@mui/material/Hidden';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import { styled } from '@mui/material/styles';
+import { navbarCloseMobile, selectFuseNavbar } from 'app/store/fuse/navbarSlice';
 import { selectFuseCurrentLayoutConfig } from 'app/store/fuse/settingsSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import NavbarStyle3Content from './NavbarStyle3Content';
 
 const navbarWidth = 120;

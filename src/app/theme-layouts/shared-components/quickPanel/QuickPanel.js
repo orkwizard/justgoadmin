@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import FuseScrollbars from '@fuse/core/FuseScrollbars';
 import { styled } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';

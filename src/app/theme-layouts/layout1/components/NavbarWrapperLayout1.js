@@ -1,12 +1,13 @@
+/* eslint-disable no-unused-vars */
 import { ThemeProvider } from '@mui/material/styles';
+import { selectFuseNavbar } from 'app/store/fuse/navbarSlice';
+import { selectFuseCurrentLayoutConfig, selectNavbarTheme } from 'app/store/fuse/settingsSlice';
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
-import { selectFuseCurrentLayoutConfig, selectNavbarTheme } from 'app/store/fuse/settingsSlice';
-import { selectFuseNavbar } from 'app/store/fuse/navbarSlice';
+import NavbarToggleFab from '../../shared-components/NavbarToggleFab';
 import NavbarStyle1 from './navbar/style-1/NavbarStyle1';
 import NavbarStyle2 from './navbar/style-2/NavbarStyle2';
 import NavbarStyle3 from './navbar/style-3/NavbarStyle3';
-import NavbarToggleFab from '../../shared-components/NavbarToggleFab';
 
 const NavbarWrapperLayout1 = props => {
   const config = useSelector(selectFuseCurrentLayoutConfig);

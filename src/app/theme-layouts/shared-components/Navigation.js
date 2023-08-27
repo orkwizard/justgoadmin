@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-vars */
 import FuseNavigation from '@fuse/core/FuseNavigation';
+import useThemeMediaQuery from '@fuse/hooks/useThemeMediaQuery';
+import { navbarCloseMobile } from 'app/store/fuse/navbarSlice';
+import { selectNavigation } from 'app/store/fuse/navigationSlice';
 import clsx from 'clsx';
 import { memo, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectNavigation } from 'app/store/fuse/navigationSlice';
-import useThemeMediaQuery from '@fuse/hooks/useThemeMediaQuery';
-import { navbarCloseMobile } from 'app/store/fuse/navbarSlice';
 
 const Navigation = props => {
   const navigation = useSelector(selectNavigation);

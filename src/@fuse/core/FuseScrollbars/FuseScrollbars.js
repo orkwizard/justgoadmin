@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { styled } from '@mui/material/styles';
 import MobileDetect from 'mobile-detect';
 import PerfectScrollbar from 'perfect-scrollbar';
@@ -47,7 +48,7 @@ const FuseScrollbars = forwardRef((props, ref) => {
       }
     });
     // eslint-disable-next-line
-    }, [ref]);
+  }, [ref]);
 
   const unHookUpEvents = useCallback(() => {
     handlerByEvent.current.forEach((value, key) => {

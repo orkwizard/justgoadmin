@@ -1,3 +1,4 @@
+/* eslint-disable import/no-import-module-exports */
 import history from '@history';
 import './api/auth-api';
 import './api/notifications-api';

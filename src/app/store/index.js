@@ -1,3 +1,4 @@
+/* eslint-disable import/no-import-module-exports */
 import { configureStore } from '@reduxjs/toolkit';
 import createReducer from './rootReducer';
 

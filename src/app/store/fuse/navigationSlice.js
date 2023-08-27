@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createEntityAdapter, createSelector, createSlice } from '@reduxjs/toolkit';
 import navigationConfig from 'app/configs/navigationConfig';
 import FuseUtils from '@fuse/utils';

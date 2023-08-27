@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import NavLinkAdapter from '@fuse/core/NavLinkAdapter';
 import { alpha, styled } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';

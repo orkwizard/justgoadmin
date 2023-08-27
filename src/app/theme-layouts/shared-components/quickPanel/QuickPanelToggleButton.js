@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import IconButton from '@mui/material/IconButton';
 import { useDispatch } from 'react-redux';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';

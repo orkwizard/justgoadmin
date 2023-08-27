@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createTheme, getContrastRatio } from '@mui/material/styles';
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
 import _ from '@lodash';

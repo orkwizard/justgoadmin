@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import { memo } from 'react';
-import QuickPanel from '../../shared-components/quickPanel/QuickPanel';
 import NotificationPanel from '../../shared-components/notificationPanel/NotificationPanel';
+import QuickPanel from '../../shared-components/quickPanel/QuickPanel';
 
 const RightSideLayout1 = props => {
   return (

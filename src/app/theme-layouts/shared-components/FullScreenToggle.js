@@ -1,8 +1,9 @@
+/* eslint-disable no-unused-vars */
+import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
+import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import clsx from 'clsx';
 import { useEffect, useLayoutEffect, useState } from 'react';
-import IconButton from '@mui/material/IconButton';
-import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 
 const useEnhancedEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 

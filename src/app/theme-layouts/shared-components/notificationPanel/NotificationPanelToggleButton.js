@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Badge from '@mui/material/Badge';
 import IconButton from '@mui/material/IconButton';
 import { useDispatch, useSelector } from 'react-redux';

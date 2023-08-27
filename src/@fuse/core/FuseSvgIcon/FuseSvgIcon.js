@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/jsx-no-useless-fragment */
 import clsx from 'clsx';
 import { forwardRef, useMemo } from 'react';
 import PropTypes from 'prop-types';

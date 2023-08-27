@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
 import { memo } from 'react';

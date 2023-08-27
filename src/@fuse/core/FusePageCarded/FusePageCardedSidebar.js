@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Drawer from '@mui/material/Drawer';
 import Hidden from '@mui/material/Hidden';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';

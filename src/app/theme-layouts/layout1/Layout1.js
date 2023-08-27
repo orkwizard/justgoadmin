@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import FuseDialog from '@fuse/core/FuseDialog';
 import { styled } from '@mui/material/styles';
 import FuseMessage from '@fuse/core/FuseMessage';

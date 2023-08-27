@@ -1,14 +1,15 @@
+/* eslint-disable no-unused-vars */
 import Hidden from '@mui/material/Hidden';
-import { styled } from '@mui/material/styles';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import { styled } from '@mui/material/styles';
 import {
   navbarCloseFolded,
   navbarCloseMobile,
   navbarOpenFolded,
   selectFuseNavbar,
 } from 'app/store/fuse/navbarSlice';
-import { useDispatch, useSelector } from 'react-redux';
 import { selectFuseCurrentLayoutConfig } from 'app/store/fuse/settingsSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import NavbarStyle2Content from './NavbarStyle2Content';
 
 const navbarWidth = 280;

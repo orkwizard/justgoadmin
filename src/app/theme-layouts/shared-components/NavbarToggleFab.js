@@ -1,13 +1,13 @@
+/* eslint-disable no-unused-vars */
+import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
+import useThemeMediaQuery from '@fuse/hooks/useThemeMediaQuery';
 import Fab from '@mui/material/Fab';
-import { styled } from '@mui/material/styles';
-
 import Tooltip from '@mui/material/Tooltip';
+import { styled } from '@mui/material/styles';
 import { navbarToggle, navbarToggleMobile } from 'app/store/fuse/navbarSlice';
+import { selectFuseCurrentLayoutConfig } from 'app/store/fuse/settingsSlice';
 import clsx from 'clsx';
 import { useDispatch, useSelector } from 'react-redux';
-import useThemeMediaQuery from '@fuse/hooks/useThemeMediaQuery';
-import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
-import { selectFuseCurrentLayoutConfig } from 'app/store/fuse/settingsSlice';
 
 const Root = styled(Tooltip)(({ theme, position }) => ({
   '& > .button': {
