@@ -5,16 +5,18 @@ import Checkbox from '@mui/material/Checkbox';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
-import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import useDestinations from 'app/hooks/useDestinations';
+import TablePagination from 'app/shared-components/TablePagination';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import DestinationsTableHead from './DestinationsTableHead';
 
+// eslint-disable-next-line no-unused-vars
 const DestinationsTable = props => {
+  const { t } = useTranslation('destinationsApp');
   const {
     destinations,
     getDestinations,
@@ -43,6 +45,7 @@ const DestinationsTable = props => {
       setSelected(data.map(n => n.id));
       return;
     }
+
     setSelected([]);
   };
 
@@ -50,8 +53,9 @@ const DestinationsTable = props => {
     setSelected([]);
   };
 
+  // eslint-disable-next-line no-unused-vars
   const handleClick = item => {
-    props.navigate(`/destinations/${item.id}/${item.handle}`);
+    // props.navigate(`/destinations/${item.id}/${item.handle}`);
   };
 
   const handleCheck = (event, id) => {
@@ -90,7 +94,7 @@ const DestinationsTable = props => {
         className="flex flex-1 items-center justify-center h-full"
       >
         <Typography color="text.secondary" variant="h5">
-          There are no destinations!
+          {t('NO_DESTINATIONS')}
         </Typography>
       </motion.div>
     );
@@ -126,6 +130,7 @@ const DestinationsTable = props => {
                       checked={isSelected}
                       onClick={event => event.stopPropagation()}
                       onChange={event => handleCheck(event, n.id)}
+                      disabled
                     />
                   </TableCell>
 
@@ -151,17 +156,17 @@ const DestinationsTable = props => {
         </Table>
       </FuseScrollbars>
 
-      <TablePaginationStyled
+      <TablePagination
         className="shrink-0 border-t-1"
         component="div"
         count={total}
         rowsPerPage={rowsPerPage}
         page={page}
         backIconButtonProps={{
-          'aria-label': 'Previous Page',
+          'aria-label': t('PREVIOUS_PAGE'),
         }}
         nextIconButtonProps={{
-          'aria-label': 'Next Page',
+          'aria-label': t('NEXT_PAGE'),
         }}
         onPageChange={setPage}
         onRowsPerPageChange={setRowsPerPage}
@@ -169,17 +174,5 @@ const DestinationsTable = props => {
     </div>
   );
 };
-
-const TablePaginationStyled = styled(TablePagination)`
-  &&& {
-    &
-      > div
-      > div.MuiInputBase-root.MuiInputBase-colorSecondary.muiltr-khdx6p-MuiInputBase-root-MuiTablePagination-select
-      > * {
-      display: flex;
-      align-items: center;
-    }
-  }
-`;
 
 export default withRouter(DestinationsTable);

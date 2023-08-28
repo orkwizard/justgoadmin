@@ -80,6 +80,7 @@ const DestinationsTableHead = props => {
             indeterminate={numSelected > 0 && numSelected < props.rowCount}
             checked={props.rowCount !== 0 && numSelected === props.rowCount}
             onChange={props.onSelectAllClick}
+            disabled
           />
           {numSelected > 0 && (
             <Box
@@ -113,7 +114,7 @@ const DestinationsTableHead = props => {
                     <ListItemIcon className="min-w-40">
                       <FuseSvgIcon>heroicons-outline:trash</FuseSvgIcon>
                     </ListItemIcon>
-                    <ListItemText primary="Remove" />
+                    <ListItemText primary={t('REMOVE')} />
                   </MenuItem>
                 </MenuList>
               </Menu>

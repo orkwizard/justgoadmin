@@ -57,7 +57,9 @@ instance.interceptors.response.use(async response => {
     if (token?.length) {
       window?.localStorage?.setItem?.(REACT_APP_SUNAPI_TOKEN_NAME, token);
 
-      originalRequest.retry = true;
+      delete originalRequest.transformRequest;
+      delete originalRequest.transformResponse;
+
       return instance(originalRequest);
     }
   }

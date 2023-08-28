@@ -34,13 +34,13 @@ const DestinationsHeader = () => {
           <FuseSvgIcon color="disabled">heroicons-solid:search</FuseSvgIcon>
 
           <Input
-            placeholder="Search destinations"
+            placeholder={t('PLACEHOLDER_SEARCH')}
             className="flex flex-1"
             disableUnderline
             fullWidth
             value={searchText}
             inputProps={{
-              'aria-label': 'Search',
+              'aria-label': t('SEARCH'),
             }}
             onChange={setSearchText}
           />
@@ -57,8 +57,9 @@ const DestinationsHeader = () => {
             variant="contained"
             color="secondary"
             startIcon={<FuseSvgIcon>heroicons-outline:plus</FuseSvgIcon>}
+            disabled
           >
-            Add
+            {t('ADD')}
           </Button>
         </motion.div>
       </div>
