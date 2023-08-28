@@ -2,6 +2,7 @@ import { lazy } from 'react';
 
 const Destinations = lazy(() => import('./destinations'));
 const Destination = lazy(() => import('./destination'));
+const States = lazy(() => import('./states'));
 
 const appsConfigs = {
   settings: {
@@ -15,6 +16,10 @@ const appsConfigs = {
     {
       path: 'destinations/:destinationId/*',
       element: <Destination />,
+    },
+    {
+      path: 'states',
+      element: <States />,
     },
   ],
 };

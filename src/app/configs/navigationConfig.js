@@ -14,6 +14,14 @@ const navigationConfig = [
     icon: 'heroicons-outline:ticket',
     url: 'destinations',
   },
+  {
+    id: 'states-component',
+    title: 'States',
+    translate: 'STATES',
+    type: 'item',
+    icon: 'heroicons-outline:view-list',
+    url: 'states',
+  },
 ];
 
 export default navigationConfig;
