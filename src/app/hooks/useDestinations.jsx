@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getDestinationsThunk,
+  resetDestinations,
   selectDestinations,
   selectLoading,
   selectPage,
@@ -40,6 +41,10 @@ const useDestinations = () => {
     removeDestinations: ids => {
       console.log('🚀 ~ useDestinations.jsx', { ids });
     },
+
+    resetDestinations: useCallback(() => {
+      dispatch(resetDestinations());
+    }, [dispatch]),
 
     setSearchText: useCallback(
       evt => {

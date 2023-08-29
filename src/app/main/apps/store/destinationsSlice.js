@@ -21,6 +21,8 @@ export const getDestinationsThunk = createAsyncThunk(
 const destinationAdapter = createEntityAdapter({});
 
 const initialState = {
+  entities: {},
+  ids: [],
   loading: false,
   searchText: '',
   total: 0,
@@ -33,6 +35,8 @@ const destinationSlice = createSlice({
   initialState: destinationAdapter.getInitialState(initialState),
 
   reducers: {
+    resetDestinations: () => initialState,
+
     setSearchText: {
       reducer: (state, action) => {
         state.searchText = action.payload;
@@ -84,7 +88,8 @@ export const { selectAll: selectDestinations } = destinationAdapter.getSelectors
   ({ justGo }) => justGo.destinations
 );
 
-export const { setSearchText, setRowsPerPage, setPage } = destinationSlice.actions;
+export const { resetDestinations, setSearchText, setRowsPerPage, setPage } =
+  destinationSlice.actions;
 
 export const selectLoading = ({ justGo }) => justGo.destinations.loading;
 export const selectSearchText = ({ justGo }) => justGo.destinations.searchText;
