@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getStatesThunk,
+  resetStates,
   selectLoading,
   selectPage,
   selectRowsPerPage,
@@ -40,6 +41,10 @@ const useStates = () => {
     removeStates: ids => {
       console.log('🚀 ~ useStates.jsx', { ids });
     },
+
+    resetStates: useCallback(() => {
+      dispatch(resetStates());
+    }, [dispatch]),
 
     setSearchText: useCallback(
       evt => {
