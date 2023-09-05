@@ -22,6 +22,14 @@ const navigationConfig = [
     icon: 'heroicons-outline:view-list',
     url: 'states',
   },
+  {
+    id: 'countries-component',
+    title: 'Countries',
+    translate: 'COUNTRIES',
+    type: 'item',
+    icon: 'material-solid:view_list',
+    url: 'countries',
+  },
 ];
 
 export default navigationConfig;

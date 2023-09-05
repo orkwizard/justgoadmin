@@ -3,6 +3,7 @@ import { lazy } from 'react';
 const Destinations = lazy(() => import('./destinations'));
 const Destination = lazy(() => import('./destination'));
 const States = lazy(() => import('./states'));
+const Countries = lazy(() => import('./countries'));
 
 const appsConfigs = {
   settings: {
@@ -20,6 +21,10 @@ const appsConfigs = {
     {
       path: 'states',
       element: <States />,
+    },
+    {
+      path: 'countries',
+      element: <Countries />,
     },
   ],
 };
