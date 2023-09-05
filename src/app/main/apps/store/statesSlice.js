@@ -20,19 +20,17 @@ export const getStatesThunk = createAsyncThunk(
 
 const statesAdapter = createEntityAdapter({});
 
-const initialState = {
-  entities: {},
-  ids: [],
+const initialState = statesAdapter.getInitialState({
   loading: false,
   searchText: '',
   total: 0,
   rowsPerPage: 10,
   page: 0,
-};
+});
 
 const statesSlice = createSlice({
   name: 'justGo/states',
-  initialState: statesAdapter.getInitialState(initialState),
+  initialState,
 
   reducers: {
     resetStates: () => initialState,

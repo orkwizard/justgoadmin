@@ -20,19 +20,17 @@ export const getDestinationsThunk = createAsyncThunk(
 
 const destinationAdapter = createEntityAdapter({});
 
-const initialState = {
-  entities: {},
-  ids: [],
+const initialState = destinationAdapter.getInitialState({
   loading: false,
   searchText: '',
   total: 0,
   rowsPerPage: 10,
   page: 0,
-};
+});
 
 const destinationSlice = createSlice({
   name: 'justGo/destinations',
-  initialState: destinationAdapter.getInitialState(initialState),
+  initialState,
 
   reducers: {
     resetDestinations: () => initialState,
